@@ -1,0 +1,79 @@
+# 环境变量和敏感信息
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+
+# Token 和密钥
+tokens/
+*.token
+*.tokens
+secrets/
+credentials/
+*.key
+*.pem
+*.crt
+
+# 密码文件
+.password
+*.password
+passwords.txt
+
+# 配置文件（含敏感信息）
+config.local.json
+settings.local.json
+*.secret
+*.secrets
+
+# 日志文件
+*.log
+logs/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# IDE 和编辑器
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+ENV/
+env/
+
+# OpenClaw 运行时
+sessions/
+*.session
+cache/
+.tmp/
+
+# 数据库
+*.db
+*.sqlite
+*.sqlite3
+
+# 备份文件
+*.bak
+*.backup
+*.old
+
+# 临时文件
+tmp/
+temp/
+*.tmp
