@@ -1,0 +1,101 @@
+{
+  "skill_name": "multi-search-engine",
+  "evals": [
+    {
+      "id": 1,
+      "eval_name": "技术教程搜索",
+      "prompt": "我想学习 Python 的 asyncio，有没有好的教程推荐？最好是中文的",
+      "expected_output": "返回 5-10 个高质量 Python asyncio 教程，包含官方文档、知名博客、视频课程。结果应该按相关性排序，前 3 个结果应该是廖雪峰、Real Python、官方文档等权威来源。",
+      "files": [],
+      "metadata": {
+        "category": "tutorial_search",
+        "language": "zh-CN",
+        "difficulty": "beginner"
+      }
+    },
+    {
+      "id": 2,
+      "eval_name": "竞品分析调研",
+      "prompt": "帮我分析一下 Notion 有哪些竞品，它们各自的优缺点是什么",
+      "expected_output": "返回 Notion 的主要竞品列表（Obsidian, Roam Research, Logseq, Craft 等），包含功能对比表、价格对比、适用场景。应该有至少 5 个竞品的详细信息。",
+      "files": [],
+      "metadata": {
+        "category": "competitive_analysis",
+        "requires_comparison": true,
+        "output_format": "table"
+      }
+    },
+    {
+      "id": 3,
+      "eval_name": "最新新闻搜索",
+      "prompt": "最近一周 AI 领域有什么重要新闻吗？特别是大模型方面的",
+      "expected_output": "返回最近 7 天内的 AI 大模型相关新闻，包含新闻标题、来源、发布日期、摘要。应该有至少 5 条新闻，按时间倒序排列。来源应该是权威科技媒体。",
+      "files": [],
+      "metadata": {
+        "category": "news_search",
+        "time_range": "7d",
+        "topic": "AI/LLM"
+      }
+    },
+    {
+      "id": 4,
+      "eval_name": "学术论文搜索",
+      "prompt": "找一下 transformer 架构的原始论文，还有引用它的重要论文",
+      "expected_output": "返回 'Attention Is All You Need' 原始论文（Vaswani et al., 2017），包含论文链接、PDF 下载、引用次数。同时返回 5-10 篇引用该论文的重要后续研究。",
+      "files": [],
+      "metadata": {
+        "category": "academic_search",
+        "requires_scholar": true,
+        "citation_analysis": true
+      }
+    },
+    {
+      "id": 5,
+      "eval_name": "产品评测搜索",
+      "prompt": "2026 年最好的笔记软件是哪个？我想找个对比评测",
+      "expected_output": "返回 2026 年笔记软件对比评测，包含 Top 5 排名、详细评分、各软件优缺点、价格信息。应该有多个独立评测来源，不是单一网站的软文。",
+      "files": [],
+      "metadata": {
+        "category": "product_review",
+        "year": 2026,
+        "requires_comparison": true
+      }
+    },
+    {
+      "id": 6,
+      "eval_name": "代码示例搜索",
+      "prompt": "有没有 React hooks 的使用示例？特别是 useEffect 和 useState 的组合使用",
+      "expected_output": "返回 React hooks 代码示例，包含官方文档、CodeSandbox 演示、GitHub 项目、博客教程。应该有可直接运行的代码片段。",
+      "files": [],
+      "metadata": {
+        "category": "code_search",
+        "technology": "React",
+        "requires_code": true
+      }
+    },
+    {
+      "id": 7,
+      "eval_name": "本地服务搜索",
+      "prompt": "上海浦东新区有什么好的日料店推荐吗？人均 300 左右的",
+      "expected_output": "返回上海浦东新区的日料店推荐，包含店名、地址、人均价格、评分、特色菜。应该有至少 5 家店，按评分排序。",
+      "files": [],
+      "metadata": {
+        "category": "local_search",
+        "location": "上海浦东",
+        "price_range": "300"
+      }
+    },
+    {
+      "id": 8,
+      "eval_name": "视频教程搜索",
+      "prompt": "想学吉他，有没有适合初学者的视频教程？B 站或者 YouTube 上的",
+      "expected_output": "返回吉他初学者视频教程，包含 B 站和 YouTube 视频链接、UP 主/频道名、播放量、时长、难度等级。应该有至少 5 个系列教程。",
+      "files": [],
+      "metadata": {
+        "category": "video_search",
+        "platforms": ["bilibili", "youtube"],
+        "difficulty": "beginner"
+      }
+    }
+  ]
+}

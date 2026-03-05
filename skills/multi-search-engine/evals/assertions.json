@@ -1,0 +1,283 @@
+{
+  "skill_name": "multi-search-engine",
+  "evals": [
+    {
+      "id": 1,
+      "eval_name": "技术教程搜索",
+      "prompt": "我想学习 Python 的 asyncio，有没有好的教程推荐？最好是中文的",
+      "assertions": [
+        {
+          "name": "返回结果数量充足",
+          "description": "至少返回 5 个教程结果",
+          "type": "count_min",
+          "value": 5,
+          "check": "results.length >= 5"
+        },
+        {
+          "name": "包含官方文档",
+          "description": "前 3 个结果中包含 Python 官方文档 (docs.python.org)",
+          "type": "contains_domain",
+          "value": "docs.python.org",
+          "check": "results.slice(0,3).some(r => r.url.includes('docs.python.org'))"
+        },
+        {
+          "name": "包含中文资源",
+          "description": "至少 3 个中文教程（域名包含 .cn 或中文站点）",
+          "type": "count_min",
+          "value": 3,
+          "check": "results.filter(r => r.url.includes('.cn') || r.lang === 'zh').length >= 3"
+        },
+        {
+          "name": "响应时间合理",
+          "description": "搜索响应时间 < 3 秒",
+          "type": "time_max",
+          "value": 3000,
+          "check": "timing.total_duration_seconds < 3"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "eval_name": "竞品分析调研",
+      "prompt": "帮我分析一下 Notion 有哪些竞品，它们各自的优缺点是什么",
+      "assertions": [
+        {
+          "name": "列出主要竞品",
+          "description": "至少提到 5 个 Notion 竞品",
+          "type": "count_min",
+          "value": 5,
+          "check": "mentionedCompetitors.length >= 5"
+        },
+        {
+          "name": "包含功能对比",
+          "description": "输出包含对比表或对比信息",
+          "type": "contains_format",
+          "value": "comparison",
+          "check": "output.includes('对比') || output.includes('vs') || output.includes('|')"
+        },
+        {
+          "name": "包含价格信息",
+          "description": "至少 3 个竞品提到价格",
+          "type": "count_min",
+          "value": 3,
+          "check": "results.filter(r => r.content.includes('价格') || r.content.includes('$')).length >= 3"
+        },
+        {
+          "name": "来源多样性",
+          "description": "结果来自至少 3 个不同域名",
+          "type": "unique_domains_min",
+          "value": 3,
+          "check": "new Set(results.map(r => new URL(r.url).hostname)).size >= 3"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "eval_name": "最新新闻搜索",
+      "prompt": "最近一周 AI 领域有什么重要新闻吗？特别是大模型方面的",
+      "assertions": [
+        {
+          "name": "新闻时效性",
+          "description": "所有新闻都是最近 7 天内",
+          "type": "time_range",
+          "value": "7d",
+          "check": "results.every(r => r.publishedDate >= Date.now() - 7*24*60*60*1000)"
+        },
+        "name": "至少 5 条新闻",
+        "description": "返回至少 5 条 AI 新闻",
+        "type": "count_min",
+        "value": 5,
+        "check": "results.length >= 5"
+        },
+        {
+          "name": "包含大模型内容",
+          "description": "至少 3 条新闻与大模型相关",
+          "type": "contains_keyword",
+          "value": ["LLM", "大模型", "GPT", "Claude", "Gemini"],
+          "check": "results.filter(r => keywords.some(k => r.title.includes(k) || r.snippet.includes(k))).length >= 3"
+        },
+        {
+          "name": "权威来源",
+          "description": "至少一半来自权威科技媒体",
+          "type": "percentage_min",
+          "value": 50,
+          "check": "results.filter(r => authoritativeDomains.includes(r.domain)).length / results.length >= 0.5"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "eval_name": "学术论文搜索",
+      "prompt": "找一下 transformer 架构的原始论文，还有引用它的重要论文",
+      "assertions": [
+        {
+          "name": "找到原始论文",
+          "description": "第一个结果是 'Attention Is All You Need'",
+          "type": "first_result_matches",
+          "value": "Attention Is All You Need",
+          "check": "results[0].title.includes('Attention Is All You Need')"
+        },
+        {
+          "name": "包含作者信息",
+          "description": "原始论文结果包含 Vaswani 等作者",
+          "type": "contains_author",
+          "value": "Vaswani",
+          "check": "results[0].authors && results[0].authors.includes('Vaswani')"
+        },
+        {
+          "name": "引用论文数量",
+          "description": "返回至少 5 篇引用论文",
+          "type": "count_min",
+          "value": 5,
+          "check": "citedPapers.length >= 5"
+        },
+        {
+          "name": "提供 PDF 链接",
+          "description": "原始论文提供 PDF 下载链接",
+          "type": "has_pdf_link",
+          "check": "results[0].pdfUrl && results[0].pdfUrl.length > 0"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "eval_name": "产品评测搜索",
+      "prompt": "2026 年最好的笔记软件是哪个？我想找个对比评测",
+      "assertions": [
+        {
+          "name": "包含排名",
+          "description": "输出包含 Top 排名或评分",
+          "type": "contains_format",
+          "value": "ranking",
+          "check": "output.includes('Top') || output.includes('排名') || output.includes('最佳')"
+        },
+        {
+          "name": "多个评测来源",
+          "description": "引用至少 2 个独立评测来源",
+          "type": "unique_sources_min",
+          "value": 2,
+          "check": "reviewSources.length >= 2"
+        },
+        {
+          "name": "包含价格信息",
+          "description": "至少 3 个产品提到价格",
+          "type": "count_min",
+          "value": 3,
+          "check": "products.filter(p => p.price).length >= 3"
+        },
+        {
+          "name": "时效性",
+          "description": "评测是 2025 年或更新的",
+          "type": "year_min",
+          "value": 2025,
+          "check": "reviews.every(r => r.year >= 2025)"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "eval_name": "代码示例搜索",
+      "prompt": "有没有 React hooks 的使用示例？特别是 useEffect 和 useState 的组合使用",
+      "assertions": [
+        {
+          "name": "包含代码片段",
+          "description": "结果中包含可运行的代码示例",
+          "type": "contains_code",
+          "check": "results.some(r => r.codeSnippet && r.codeSnippet.length > 0)"
+        },
+        {
+          "name": "官方文档",
+          "description": "包含 React 官方文档链接",
+          "type": "contains_domain",
+          "value": "react.dev",
+          "check": "results.some(r => r.url.includes('react.dev') || r.url.includes('reactjs.org'))"
+        },
+        {
+          "name": "可运行示例",
+          "description": "至少一个 CodeSandbox 或类似可运行示例",
+          "type": "contains_platform",
+          "value": "codesandbox",
+          "check": "results.some(r => r.url.includes('codesandbox') || r.url.includes('stackblitz'))"
+        },
+        {
+          "name": "覆盖两个 hooks",
+          "description": "示例同时展示 useEffect 和 useState",
+          "type": "contains_keywords",
+          "value": ["useEffect", "useState"],
+          "check": "codeExamples.some(e => e.includes('useEffect') && e.includes('useState'))"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "eval_name": "本地服务搜索",
+      "prompt": "上海浦东新区有什么好的日料店推荐吗？人均 300 左右的",
+      "assertions": [
+        {
+          "name": "地理位置正确",
+          "description": "所有结果都在上海浦东新区",
+          "type": "location_match",
+          "value": "上海浦东",
+          "check": "results.every(r => r.location && r.location.includes('浦东'))"
+        },
+        {
+          "name": "至少 5 家店",
+          "description": "返回至少 5 家日料店",
+          "type": "count_min",
+          "value": 5,
+          "check": "results.length >= 5"
+        },
+        {
+          "name": "价格范围正确",
+          "description": "人均价格在 200-400 之间",
+          "type": "price_range",
+          "min": 200,
+          "max": 400,
+          "check": "results.every(r => r.price >= 200 && r.price <= 400)"
+        },
+        {
+          "name": "包含评分",
+          "description": "每家店都有评分信息",
+          "type": "all_have_field",
+          "value": "rating",
+          "check": "results.every(r => r.rating && r.rating > 0)"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "eval_name": "视频教程搜索",
+      "prompt": "想学吉他，有没有适合初学者的视频教程？B 站或者 YouTube 上的",
+      "assertions": [
+        {
+          "name": "平台正确",
+          "description": "结果来自 B 站或 YouTube",
+          "type": "platform_match",
+          "value": ["bilibili.com", "youtube.com"],
+          "check": "results.every(r => r.url.includes('bilibili.com') || r.url.includes('youtube.com'))"
+        },
+        {
+          "name": "至少 5 个教程",
+          "description": "返回至少 5 个视频教程",
+          "type": "count_min",
+          "value": 5,
+          "check": "results.length >= 5"
+        },
+        {
+          "name": "难度匹配",
+          "description": "教程标记为初学者级别",
+          "type": "difficulty_match",
+          "value": "beginner",
+          "check": "results.filter(r => r.difficulty === 'beginner' || r.title.includes('入门') || r.title.includes('初学者')).length >= 3"
+        },
+        {
+          "name": "包含播放量",
+          "description": "视频包含播放量/观看次数信息",
+          "type": "all_have_field",
+          "value": "views",
+          "check": "results.every(r => r.views && r.views > 0)"
+        }
+      ]
+    }
+  ]
+}

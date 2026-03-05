@@ -1,0 +1,82 @@
+[
+  {
+    "query": "帮我搜一下 Python asyncio 的教程，要中文的",
+    "should_trigger": true
+  },
+  {
+    "query": "我想了解机器学习的最新进展，有什么资料推荐吗",
+    "should_trigger": true
+  },
+  {
+    "query": "找一下 Notion 的竞品有哪些，做个对比",
+    "should_trigger": true
+  },
+  {
+    "query": "最近一周 AI 领域有什么大新闻",
+    "should_trigger": true
+  },
+  {
+    "query": "上海浦东新区有什么好吃的日料店，人均 300 左右",
+    "should_trigger": true
+  },
+  {
+    "query": "2026 年最好的笔记软件是哪个，有评测吗",
+    "should_trigger": true
+  },
+  {
+    "query": "React hooks 怎么用，有代码示例吗",
+    "should_trigger": true
+  },
+  {
+    "query": "吉他入门视频教程，B 站或 YouTube 上的",
+    "should_trigger": true
+  },
+  {
+    "query": "transformer 架构的原始论文是哪篇",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我调研一下国内 CRM 厂商的市场份额",
+    "should_trigger": true
+  },
+  {
+    "query": "写一个 Python 脚本，读取 CSV 文件并生成图表",
+    "should_trigger": false
+  },
+  {
+    "query": "把这段文字翻译成英文",
+    "should_trigger": false
+  },
+  {
+    "query": "总结一下我们上次聊的内容",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我检查这段代码有没有 bug",
+    "should_trigger": false
+  },
+  {
+    "query": "解释一下量子力学的基本原理",
+    "should_trigger": false
+  },
+  {
+    "query": "创建一个待办事项列表",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我写一封邮件给老板请假",
+    "should_trigger": false
+  },
+  {
+    "query": "计算 1234 * 5678 等于多少",
+    "should_trigger": false
+  },
+  {
+    "query": "ok so 我老板刚发了个 excel 文件让我处理一下利润数据",
+    "should_trigger": false
+  },
+  {
+    "query": "我想找个能帮我写代码的 tool",
+    "should_trigger": false
+  }
+]
