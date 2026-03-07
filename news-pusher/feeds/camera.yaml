@@ -1,0 +1,36 @@
+# 影视器材类 RSS 源
+
+- name: B&H Photo Video
+  url: https://www.bhphotovideo.com/find/rss.jsp
+  category: Camera
+  language: en
+
+- name: DPReview News
+  url: https://www.dpreview.com/feeds/news.xml
+  category: Camera
+  language: en
+
+- name: 影视飓风 (B 站)
+  url: https://rsshub.app/bilibili/user/video/10360235
+  category: Video
+  language: zh
+
+- name: Cinema5D
+  url: https://www.cinema5d.com/feed/
+  category: Video
+  language: en
+
+- name: No Film School
+  url: https://nofilmschool.com/feed
+  category: Video
+  language: en
+
+- name: RED User
+  url: https://www.reduser.net/forums/index.php?forums/-/index.rss
+  category: Video
+  language: en
+
+- name: 新片场
+  url: https://rsshub.app/xinpianchang/hot
+  category: Video
+  language: zh

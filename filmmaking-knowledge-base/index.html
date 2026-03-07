@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>影视制作知识库 - 专业摄影与后期指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .toc {
+            background: #f8f9fa;
+            padding: 30px 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .toc h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .toc-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .toc-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .toc-item h3 {
+            color: #3498db;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .toc-item ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+        
+        .toc-item li {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+        
+        .toc-item a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .toc-item a:hover {
+            color: #3498db;
+            text-decoration: underline;
+        }
+        
+        .content {
+            padding: 40px 20px;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2em;
+            font-weight: 300;
+        }
+        
+        .subsection {
+            margin-bottom: 40px;
+        }
+        
+        .subsection h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+            font-size: 1.5em;
+        }
+        
+        .subsection h4 {
+            color: #34495e;
+            margin: 20px 0 15px 0;
+            font-size: 1.2em;
+        }
+        
+        .subsection p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .subsection ul, .subsection ol {
+            margin: 15px 0 15px 30px;
+        }
+        
+        .subsection li {
+            margin-bottom: 8px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        th {
+            background: #3498db;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background: #f1f3f4;
+        }
+        
+        tr:hover {
+            background: #e8f4fd;
+        }
+        
+        .tip {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .section-title {
+                font-size: 1.5em;
+            }
+            
+            .subsection h3 {
+                font-size: 1.3em;
+            }
+            
+            .toc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 影视制作知识库</h1>
+            <p class="subtitle">专业摄影与后期制作完整指南 - 从基础到高级的全面学习资源</p>
+        </header>
+        
+        <div class="toc">
+            <h2>📋 目录导航</h2>
+            <div class="toc-grid">
+                <div class="toc-item">
+                    <h3>📸 摄影基础</h3>
+                    <ul>
+                        <li><a href="#camera-settings">相机设置与参数</a></li>
+                        <li><a href="#lens-selection">镜头选择指南</a></li>
+                        <li><a href="#lighting-exposure">光线与曝光控制</a></li>
+                        <li><a href="#composition-framing">构图与取景技巧</a></li>
+                    </ul>
+                </div>
+                <div class="toc-item">
+                    <h3>🎥 专业拍摄</h3>
+                    <ul>
+                        <li><a href="#cinematic-techniques">电影感拍摄技巧</a></li>
+                        <li><a href="#lighting-setup">灯光布置方案</a></li>
+                        <li><a href="#stabilizer-cinematography">稳定器与运镜</a></li>
+                    </ul>
+                </div>
+                <div class="toc-item">
+                    <h3>✂️ 后期剪辑</h3>
+                    <ul>
+                        <li><a href="#editing-software">软件教程</a></li>
+                        <li><a href="#editing-rhythm-narrative">剪辑节奏与叙事</a></li>
+                        <li><a href="#transitions-effects">转场与特效运用</a></li>
+                    </ul>
+                </div>
+                <div class="toc-item">
+                    <h3>🎨 调色艺术</h3>
+                    <ul>
+                        <li><a href="#color-grading-basics">色彩分级基础</a></li>
+                        <li><a href="#luts-guide">LUTs 使用指南</a></li>
+                        <li><a href="#style-presets">不同风格调色预设</a></li>
+                    </ul>
+                </div>
+                <div class="toc-item">
+                    <h3>📚 资源中心</h3>
+                    <ul>
+                        <li><a href="#equipment-recommendations">推荐设备清单</a></li>
+                        <li><a href="#software-tools">软件工具合集</a></li>
+                        <li><a href="#learning-resources">学习资源链接</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- 摄影基础模块 -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">📸 摄影基础</h2>
+                </div>
+                
+                <!-- 相机设置与参数 -->
+                <div class="subsection" id="camera-settings">
+                    <h3>相机设置与参数</h3>
+                    <h4>ISO、快门、光圈三角关系</h4>
+                    <p>曝光三角是摄影的基础，三个参数相互影响：</p>
+                    <ul>
+                        <li><strong>ISO</strong>：感光度，数值越高噪点越多，但能在暗光环境下拍摄</li>
+                        <li><strong>快门速度</strong>：控制曝光时间，高速快门冻结动作，慢速快门创造动态模糊</li>
+                        <li><strong>光圈</strong>：控制进光量和景深，大光圈（小f值）产生浅景深，小光圈（大f值）获得大景深</li>
+                    </ul>
+                    
+                    <h4>白平衡设置技巧</h4>
+                    <p>正确的白平衡确保色彩准确还原：</p>
+                    <ul>
+                        <li>日光环境：5500K-6500K</li>
+                        <li>阴天环境：6500K-7500K</li>
+                        <li>室内钨丝灯：2800K-3200K</li>
+                        <li>荧光灯：4000K-4500K</li>
+                        <li>建议使用自定义白平衡或灰卡校准</li>
+                    </ul>
+                    
+                    <h4>对焦模式选择</h4>
+                    <ul>
+                        <li><strong>单点对焦</strong>：精确控制对焦点，适合静态主体</li>
+                        <li><strong>区域对焦</strong>：在指定区域内自动选择对焦点，适合中等移动速度的主体</li>
+                        <li><strong>跟踪对焦</strong>：持续跟踪移动主体，适合快速运动场景</li>
+                        <li><strong>手动对焦</strong>：完全控制，适合视频拍摄或特殊创意需求</li>
+                    </ul>
+                    
+                    <h4>拍摄格式选择</h4>
+                    <ul>
+                        <li><strong>RAW格式</strong>：保留最多图像信息，后期处理空间最大，文件体积大</li>
+                        <li><strong>ProRes格式</strong>：专业视频编码，画质优秀，文件适中，适合后期制作</li>
+                        <li><strong>H.264/H.265</strong>：高效压缩，文件小，适合网络分发，后期空间有限</li>
+                    </ul>
+                    
+                    <h4>帧率与快门角度设置</h4>
+                    <p>视频拍摄中的关键参数：</p>
+                    <ul>
+                        <li>24fps：电影标准帧率，营造电影感</li>
+                        <li>30fps：电视标准，流畅自然</li>
+                        <li>60fps+：慢动作素材，需要后期降速</li>
+                        <li>快门角度：180°原则（快门速度 = 1/(2×帧率)），如24fps对应1/48s快门</li>
+                    </ul>
+                </div>
+                
+                <!-- 镜头选择指南 -->
+                <div class="subsection" id="lens-selection">
+                    <h3>镜头选择指南</h3>
+                    <h4>焦距选择原则</h4>
+                    
+                    <h5>广角镜头（16-35mm）</h5>
+                    <ul>
+                        <li><strong>适用场景</strong>：环境摄影、建筑摄影、创意变形效果</li>
+                        <li><strong>视觉特点</strong>：强调透视感，扩大空间感</li>
+                        <li><strong>注意事项</strong>：边缘畸变控制，避免重要元素放在画面边缘</li>
+                    </ul>
+                    
+                    <h5>标准镜头（35-85mm）</h5>
+                    <ul>
+                        <li><strong>适用场景</strong>：人像摄影、日常记录、自然视角</li>
+                        <li><strong>视觉特点</strong>：接近人眼视角，自然真实</li>
+                        <li><strong>推荐焦段</strong>：50mm（全能）、85mm（人像）</li>
+                    </ul>
+                    
+                    <h5>长焦镜头（85mm+）</h5>
+                    <ul>
+                        <li><strong>适用场景</strong>：远距离拍摄、背景压缩、浅景深效果</li>
+                        <li><strong>视觉特点</strong>：压缩空间感，突出主体</li>
+                        <li><strong>常用焦段</strong>：85mm、135mm、200mm+</li>
+                    </ul>
+                    
+                    <h4>镜头类型对比</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>特性</th>
+                                <th>定焦镜头</th>
+                                <th>变焦镜头</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>光圈</td>
+                                <td>通常更大（f/1.4, f/1.8）</td>
+                                <td>通常较小（f/2.8, f/4）</td>
+                            </tr>
+                            <tr>
+                                <td>画质</td>
+                                <td>通常更锐利</td>
+                                <td>画质稍逊但足够专业</td>
+                            </tr>
+                            <tr>
+                                <td>灵活性</td>
+                                <td>需要移动位置</td>
+                                <td>可变焦距，灵活构图</td>
+                            </tr>
+                            <tr>
+                                <td>价格</td>
+                                <td>相对便宜</td>
+                                <td>相对昂贵</td>
+                            </tr>
+                            <tr>
+                                <td>重量</td>
+                                <td>通常较轻</td>
+                                <td>通常较重</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h4>T值 vs F值</h4>
+                    <ul>
+                        <li><strong>F值</strong>：理论光圈值，基于几何光学计算</li>
+                        <li><strong>T值</strong>：实际透光率，考虑镜片透光损失</li>
+                        <li><strong>电影镜头</strong>：通常标注T值，确保曝光一致性</li>
+                        <li><strong>摄影镜头</strong>：通常标注F值</li>
+                    </ul>
+                    
+                    <h4>镜头呼吸效应处理</h4>
+                    <p><strong>什么是呼吸效应？</strong></p>
+                    <p>对焦时视角发生微小变化的现象，在视频拍摄中特别明显。</p>
+                    
+                    <p><strong>解决方案：</strong></p>
+                    <ul>
+                        <li>选择专为视频设计的镜头</li>
+                        <li>使用跟焦器减少手动对焦</li>
+                        <li>后期稳定软件修正</li>
+                        <li>拍摄时预留额外画面空间</li>
+                    </ul>
+                    
+                    <h4>推荐镜头组合</h4>
+                    <p><strong>入门级三镜头套装</strong></p>
+                    <ul>
+                        <li><strong>广角</strong>：16-35mm f/4</li>
+                        <li><strong>标准</strong>：24-70mm f/2.8</li>
+                        <li><strong>长焦</strong>：70-200mm f/2.8</li>
+                    </ul>
+                    
+                    <p><strong>电影感定焦套装</strong></p>
+                    <ul>
+                        <li><strong>超广角</strong>：24mm T1.5</li>
+                        <li><strong>标准</strong>：35mm T1.5, 50mm T1.5</li>
+                        <li><strong>人像</strong>：85mm T1.5</li>
+                    </ul>
+                    
+                    <p><strong>预算有限推荐</strong></p>
+                    <ul>
+                        <li><strong>一镜走天下</strong>：24-105mm f/4</li>
+                        <li><strong>最佳性价比</strong>：35mm f/1.8 + 85mm f/1.8</li>
+                    </ul>
+                    
+                    <div class="tip">
+                        <strong>提示</strong>：焦距选择没有绝对标准，关键是理解不同焦段的视觉语言，并根据创作意图选择合适的工具。
+                    </div>
+                </div>
+                
+                <!-- 光线与曝光控制 -->
+                <div class="subsection" id="lighting-exposure">
+                    <h3>光线与曝光控制</h3>
+                    <h4>自然光利用技巧</h4>
+                    <ul>
+                        <li><strong>黄金时刻</strong>：日出后和日落前1小时，光线柔和温暖，最适合拍摄</li>
+                        <li><strong>蓝色时刻</strong>：日出前和日落后，天空呈现蓝色调，适合城市夜景</li>
+                        <li><strong>阴天光线</strong>：天然柔光箱，光线均匀，适合人像和产品拍摄</li>
+                        <li><strong>正午阳光</strong>：硬光强烈，通常需要柔化或寻找遮荫</li>
+                    </ul>
+                    
+                    <h4>人工光源布置方案</h4>
+                    <ul>
+                        <li><strong>主光源</strong>：主要照明，决定整体光影效果</li>
+                        <li><strong>补光</strong>：填充阴影，降低对比度</li>
+                        <li><strong>轮廓光</strong>：勾勒主体轮廓，增加立体感</li>
+                        <li><strong>背景光</strong>：照亮背景，分离主体与背景</li>
+                    </ul>
+                    
+                    <h4>测光模式选择</h4>
+                    <ul>
+                        <li><strong>评价测光</strong>：全画面平均测光，适合一般场景</li>
+                        <li><strong>中央重点测光</strong>：重视画面中央区域，适合人像</li>
+                        <li><strong>点测光</strong>：精确测量小区域，适合高对比场景</li>
+                        <li><strong>直方图监控</strong>：实时查看曝光分布，避免过曝欠曝</li>
+                    </ul>
+                    
+                    <h4>HDR拍摄策略</h4>
+                    <ul>
+                        <li><strong>包围曝光</strong>：拍摄多张不同曝光的照片，后期合成HDR</li>
+                        <li><strong>Log格式</strong>：使用相机Log模式，保留更多动态范围</li>
+                        <li><strong>渐变滤镜</strong>：物理方式平衡天空和地面曝光差异</li>
+                        <li><strong>后期处理</strong>：使用专业软件进行HDR合成和色调映射</li>
+                    </ul>
+                    
+                    <h4>避免过曝和欠曝</h4>
+                    <ul>
+                        <li>使用斑马纹显示过曝区域</li>
+                        <li>开启高光警告功能</li>
+                        <li>适当降低ISO而非提高快门速度</li>
+                        <li>使用ND滤镜控制进光量</li>
+                        <li>后期保留一定的宽容度空间</li>
+                    </ul>
+                </div>
+                
+                <!-- 构图与取景技巧 -->
+                <div class="subsection" id="composition-framing">
+                    <h3>构图与取景技巧</h3>
+                    <h4>三分法、黄金分割</h4>
+                    <ul>
+                        <li>将画面分为九宫格，重要元素放在交点或线上</li>
+                        <li>地平线放在上1/3或下1/3位置，避免居中</li>
+                        <li>黄金螺旋构图，引导视线自然流动</li>
+                        <li>保持画面平衡，避免一侧过重</li>
+                    </ul>
+                    
+                    <h4>引导线构图</h4>
+                    <ul>
+                        <li>利用道路、河流、建筑线条引导视线到主体</li>
+                        <li>对角线构图增加动感和张力</li>
+                        <li>曲线构图营造柔和流畅的感觉</li>
+                        <li>放射线构图突出中心主体</li>
+                    </ul>
+                    
+                    <h4>负空间运用</h4>
+                    <ul>
+                        <li>留白创造呼吸感和神秘感</li>
+                        <li>主体朝向方向预留更多空间</li>
+                        <li>简洁背景突出主体</li>
+                        <li>利用负空间传达情绪和氛围</li>
+                    </ul>
+                    
+                    <h4>电影感构图要素</h4>
+                    <ul>
+                        <li><strong>宽画幅</strong>：使用2.39:1或16:9比例</li>
+                        <li><strong>浅景深</strong>：大光圈创造背景虚化</li>
+                        <li><strong>对称构图</strong>：韦斯·安德森风格</li>
+                        <li><strong>框架构图</strong>：利用门窗、拱门等自然框架</li>
+                        <li><strong>低角度/高角度</strong>：创造戏剧性视角</li>
+                    </ul>
+                    
+                    <h4>动态构图原则</h4>
+                    <ul>
+                        <li>运动主体前方预留空间</li>
+                        <li>保持视线方向的一致性</li>
+                        <li>利用前景增加层次感</li>
+                        <li>避免画面切割重要元素</li>
+                        <li>考虑连续镜头的构图连贯性</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 专业拍摄模块 -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">🎥 专业拍摄</h2>
+                </div>
+                
+                <!-- 电影感拍摄技巧 -->
+                <div class="subsection" id="cinematic-techniques">
+                    <h3>电影感拍摄技巧</h3>
+                    <h4>宽画幅设置</h4>
+                    <ul>
+                        <li><strong>2.39:1</strong>：经典电影宽屏比例，最具电影感</li>
+                        <li><strong>16:9</strong>：高清电视标准，通用性强</li>
+                        <li><strong>4:3</strong>：复古风格，适合特定题材</li>
+                        <li>拍摄时预留安全区域，后期裁剪更灵活</li>
+                    </ul>
+                    
+                    <h4>浅景深控制</h4>
+                    <ul>
+                        <li>使用大光圈镜头（f/1.4-f/2.8）</li>
+                        <li>增加主体与背景的距离</li>
+                        <li>使用长焦镜头增强背景虚化</li>
+                        <li>注意焦点准确性，避免主体失焦</li>
+                    </ul>
+                    
+                    <h4>运动镜头设计</h4>
+                    <ul>
+                        <li><strong>推镜头</strong>：靠近主体，强调重要性</li>
+                        <li><strong>拉镜头</strong>：远离主体，揭示环境</li>
+                        <li><strong>摇镜头</strong>：水平或垂直转动，跟随动作</li>
+                        <li><strong>跟拍</strong>：平行跟随主体移动</li>
+                        <li><strong>升降镜头</strong>：垂直移动，创造震撼效果</li>
+                    </ul>
+                    
+                    <h4>色彩搭配原则</h4>
+                    <ul>
+                        <li><strong>互补色</strong>：红绿、蓝橙，创造强烈对比</li>
+                        <li><strong>类似色</strong>：相邻色相，和谐统一</li>
+                        <li><strong>单色调</strong>：同一色相不同明度，简洁高级</li>
+                        <li>避免过多颜色混杂，保持主色调统一</li>
+                    </ul>
+                    
+                    <h4>胶片颗粒效果</h4>
+                    <ul>
+                        <li>后期添加适量胶片颗粒增加质感</li>
+                        <li>颗粒强度根据画面内容调整</li>
+                        <li>避免过度使用影响画质</li>
+                        <li>结合色彩分级营造复古氛围</li>
+                    </ul>
+                </div>
+                
+                <!-- 灯光布置方案 -->
+                <div class="subsection" id="lighting-setup">
+                    <h3>灯光布置方案</h3>
+                    <h4>三点布光法</h4>
+                    <ul>
+                        <li><strong>主光（Key Light）</strong>：主要光源，通常45度角照射主体</li>
+                        <li><strong>补光（Fill Light）</strong>：填充阴影，强度为主光的1/2-1/3</li>
+                        <li><strong>轮廓光（Back Light）</strong>：从后方照亮主体轮廓，增加立体感</li>
+                        <li>三点布光是基础，可根据需要增减光源</li>
+                    </ul>
+                    
+                    <h4>柔光 vs 硬光</h4>
+                    <ul>
+                        <li><strong>柔光特点</strong>：光线均匀，阴影柔和，适合人像和产品</li>
+                        <li><strong>硬光特点</strong>：对比强烈，阴影清晰，适合戏剧性和力量感</li>
+                        <li><strong>柔光实现</strong>：柔光箱、反光伞、柔光布、阴天自然光</li>
+                        <li><strong>硬光实现</strong>：直射阳光、裸灯、聚光筒</li>
+                    </ul>
+                    
+                    <h4>色温匹配技巧</h4>
+                    <ul>
+                        <li>混合光源时统一色温（通常5600K日光或3200K钨丝灯）</li>
+                        <li>使用CTO（橙色）或CTB（蓝色）滤片调整色温</li>
+                        <li>白平衡设置与主光源匹配</li>
+                        <li>避免色温混乱造成色彩不协调</li>
+                    </ul>
+                    
+                    <h4>反光板使用</h4>
+                    <ul>
+                        <li><strong>白色反光板</strong>：柔和补光，自然效果</li>
+                        <li><strong>银色反光板</strong>：强反射，增加对比度</li>
+                        <li><strong>金色反光板</strong>：暖色调补光，适合黄金时刻</li>
+                        <li><strong>黑色反光板</strong>：吸收光线，增加阴影</li>
+                        <li>反光板距离控制光线强度</li>
+                    </ul>
+                    
+                    <h4>LED灯阵列配置</h4>
+                    <ul>
+                        <li><strong>RGBWW LED</strong>：可调色温和色彩，功能全面</li>
+                        <li><strong>双色温LED</strong>：3200K-5600K连续调节，实用性强</li>
+                        <li><strong>单色温LED</strong>：固定色温，成本较低</li>
+                        <li>多灯组合时注意功率和散热</li>
+                        <li>使用DMX控制器统一管理多盏灯具</li>
+                    </ul>
+                </div>
+                
+                <!-- 稳定器与运镜 -->
+                <div class="subsection" id="stabilizer-cinematography">
+                    <h3>稳定器与运镜</h3>
+                    <h4>稳定器校准步骤</h4>
+                    <ol>
+                        <li>安装相机并初步平衡</li>
+                        <li>调整前后平衡（俯仰轴）</li>
+                        <li>调整左右平衡（横滚轴）</li>
+                        <li>调整上下平衡（偏航轴）</li>
+                        <li>微调电机力度参数</li>
+                        <li>测试运行并最终调整</li>
+                    </ol>
+                    
+                    <h4>常见运镜手法</h4>
+                    
+                    <h5>推拉镜头</h5>
+                    <ul>
+                        <li><strong>推进</strong>：逐渐靠近主体，强调情感或重要细节</li>
+                        <li><strong>拉远</strong>：逐渐远离主体，揭示环境或制造疏离感</li>
+                        <li>保持匀速运动，避免突然加速减速</li>
+                    </ul>
+                    
+                    <h5>摇镜头</h5>
+                    <ul>
+                        <li><strong>水平摇</strong>：跟随水平移动的主体或展示宽广场景</li>
+                        <li><strong>垂直摇</strong>：展示高度或从局部到整体</li>
+                        <li>起始和结束要有停顿，避免突兀</li>
+                    </ul>
+                    
+                    <h5>跟拍</h5>
+                    <ul>
+                        <li>保持与主体相同的速度和方向</li>
+                        <li>使用滑轨或稳定器确保平稳</li>
+                        <li>注意背景变化，避免干扰主体</li>
+                    </ul>
+                    
+                    <h5>升降镜头</h5>
+                    <ul>
+                        <li>从低到高：展现宏伟或希望</li>
+                        <li>从高到低：制造压迫感或揭示细节</li>
+                        <li>需要专业设备如升降臂或无人机</li>
+                    </ul>
+                    
+                    <h4>手持稳定技巧</h4>
+                    <ul>
+                        <li>双脚分开与肩同宽，膝盖微屈</li>
+                        <li>肘部贴近身体，减少晃动</li>
+                        <li>使用呼吸控制，屏住呼吸拍摄关键镜头</li>
+                        <li>借助墙壁、栏杆等支撑物</li>
+                        <li>后期使用稳定软件进一步优化</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 后期剪辑模块 -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">✂️ 后期剪辑</h2>
+                </div>
+                
+                <!-- 软件教程 -->
+                <div class="subsection" id="editing-software">
+                    <h3>软件教程</h3>
+                    <h4>DaVinci Resolve 工作流</h4>
+                    <ul>
+                        <li><strong>媒体池管理</strong>：导入素材、创建智能媒体夹、元数据标记</li>
+                        <li><strong>剪辑页面操作</strong>：时间线编辑、多机位同步、音频轨道管理</li>
+                        <li><strong>Fairlight 音频处理</strong>：专业音频编辑、混音、效果处理</li>
+                        <li><strong>Fusion 特效合成</strong>：节点式特效制作、动态图形、合成</li>
+                        <li><strong>调色页面</strong>：专业色彩分级、LUT应用、示波器监控</li>
+                    </ul>
+                    
+                    <h4>Premiere Pro 技巧</h4>
+                    <ul>
+                        <li><strong>序列设置优化</strong>：匹配素材格式，避免渲染问题</li>
+                        <li><strong>动态链接工作流</strong>：与After Effects无缝协作</li>
+                        <li><strong>插件生态系统</strong>：Red Giant、Boris FX等第三方插件</li>
+                        <li><strong>代理工作流</strong>：高分辨率素材的流畅编辑</li>
+                        <li><strong>团队项目协作</strong>：多人同时编辑同一项目</li>
+                    </ul>
+                    
+                    <h4>Final Cut Pro 优势</h4>
+                    <ul>
+                        <li><strong>磁性时间线</strong>：智能连接片段，避免轨道冲突</li>
+                        <li><strong>优化媒体处理</strong>：自动转码提升性能</li>
+                        <li><strong>Mac 性能优化</strong>：充分利用Apple Silicon芯片</li>
+                        <li><strong>角色标签系统</strong>：音频分类管理</li>
+                        <li><strong>复合片段</strong>：复杂效果的模块化管理</li>
+                    </ul>
+                </div>
+                
+                <!-- 剪辑节奏与叙事 -->
+                <div class="subsection" id="editing-rhythm-narrative">
+                    <h3>剪辑节奏与叙事</h3>
+                    <h4>剪辑点选择原则</h4>
+                    <ul>
+                        <li><strong>动作剪辑</strong>：在动作过程中切换，保持流畅性</li>
+                        <li><strong>视线剪辑</strong>：跟随角色视线方向切换</li>
+                        <li><strong>情绪剪辑</strong>：根据情感节奏决定剪辑时机</li>
+                        <li><strong>180度规则</strong>：保持空间关系一致性</li>
+                        <li><strong>匹配剪辑</strong>：相似形状、动作或色彩的转场</li>
+                    </ul>
+                    
+                    <h4>节奏控制技巧</h4>
+                    <ul>
+                        <li><strong>快节奏</strong>：短镜头、快速切换，营造紧张感</li>
+                        <li><strong>慢节奏</strong>：长镜头、缓慢切换，营造沉思感</li>
+                        <li><strong>节奏变化</strong>：根据剧情需要调整节奏</li>
+                        <li><strong>音乐同步</strong>：剪辑点与音乐节拍同步</li>
+                        <li><strong>呼吸空间</strong>：给观众消化信息的时间</li>
+                    </ul>
+                    
+                    <h4>情感表达通过剪辑</h4>
+                    <ul>
+                        <li>镜头长度影响情感强度</li>
+                        <li>剪辑节奏反映角色心理状态</li>
+                        <li>镜头顺序构建叙事逻辑</li>
+                        <li>留白创造悬念和想象空间</li>
+                        <li>对比剪辑强化情感冲突</li>
+                    </ul>
+                    
+                    <h4>多机位同步剪辑</h4>
+                    <ul>
+                        <li>使用音频波形自动同步</li>
+                        <li>手动标记同步点</li>
+                        <li>多机位切换面板实时切换</li>
+                        <li>保持主镜头连续性</li>
+                        <li>利用不同角度丰富视觉体验</li>
+                    </ul>
+                    
+                    <h4>B-roll 运用策略</h4>
+                    <ul>
+                        <li>覆盖主镜头中的问题片段</li>
+                        <li>提供额外视觉信息</li>
+                        <li>创造视觉节奏变化</li>
+                        <li>避免画面单调</li>
+                        <li>支持叙事主题</li>
+                    </ul>
+                </div>
+                
+                <!-- 转场与特效运用 -->
+                <div class="subsection" id="transitions-effects">
+                    <h3>转场与特效运用</h3>
+                    <h4>自然转场 vs 创意转场</h4>
+                    <ul>
+                        <li><strong>硬切</strong>：最常用的转场，直接切换</li>
+                        <li><strong>淡入淡出</strong>：时间或场景转换</li>
+                        <li><strong>叠化</strong>：两个镜头重叠，表示时间流逝</li>
+                        <li><strong>划像</strong>：创意转场，需谨慎使用</li>
+                        <li><strong>匹配转场</strong>：利用相似元素自然过渡</li>
+                    </ul>
+                    
+                    <h4>L-cut 和 J-cut 技巧</h4>
+                    <ul>
+                        <li><strong>L-cut</strong>：音频先于视频切换，保持对话连续性</li>
+                        <li><strong>J-cut</strong>：音频晚于视频切换，提前引入新场景声音</li>
+                        <li>增强叙事流畅性</li>
+                        <li>避免生硬的切换</li>
+                        <li>创造声音先行的沉浸感</li>
+                    </ul>
+                    
+                    <h4>速度变化处理</h4>
+                    <ul>
+                        <li><strong>时间重映射</strong>：精确控制速度变化</li>
+                        <li><strong>速度 ramp</strong>：平滑的速度过渡</li>
+                        <li><strong>跳帧效果</strong>：创造特殊视觉效果</li>
+                        <li><strong>光流法</strong>：高质量慢动作生成</li>
+                        <li>保持动作连贯性</li>
+                    </ul>
+                    
+                    <h4>关键帧动画</h4>
+                    <ul>
+                        <li>位置、缩放、旋转、透明度动画</li>
+                        <li>缓入缓出控制运动曲线</li>
+                        <li>贝塞尔曲线精细调整</li>
+                        <li>父子级联动画</li>
+                        <li>表达式驱动复杂动画</li>
+                    </ul>
+                    
+                    <h4>遮罩与抠像</h4>
+                    <ul>
+                        <li><strong>色度键</strong>：绿幕/蓝幕抠像</li>
+                        <li><strong>亮度键</strong>：基于亮度抠像</li>
+                        <li><strong>遮罩绘制</strong>：手动创建精确遮罩</li>
+                        <li><strong>跟踪遮罩</strong>：跟随运动主体</li>
+                        <li><strong>边缘优化</strong>：羽化、收缩、去边</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 调色艺术模块 -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">🎨 调色艺术</h2>
+                </div>
+                
+                <!-- 色彩分级基础 -->
+                <div class="subsection" id="color-grading-basics">
+                    <h3>色彩分级基础</h3>
+                    <h4>一级调色 vs 二级调色</h4>
+                    <ul>
+                        <li><strong>一级调色</strong>：全局调整，影响整个画面</li>
+                        <li><strong>二级调色</strong>：局部调整，针对特定颜色范围或区域</li>
+                        <li>先完成一级调色，再进行二级调色</li>
+                        <li>一级调色确保技术正确性，二级调色实现创意效果</li>
+                    </ul>
+                    
+                    <h4>色彩空间理解</h4>
+                    <ul>
+                        <li><strong>Rec.709</strong>：标准动态范围，用于网络和电视</li>
+                        <li><strong>Rec.2020</strong>：超高清标准，更广色域</li>
+                        <li><strong>Log</strong>：平面曲线，保留最大动态范围</li>
+                        <li><strong>HLG</strong>：混合对数伽马，兼容SDR和HDR</li>
+                        <li><strong>PQ</strong>：感知量化，用于HDR内容</li>
+                    </ul>
+                    
+                    <h4>示波器使用</h4>
+                    <ul>
+                        <li><strong>波形图</strong>：显示亮度分布，避免过曝欠曝</li>
+                        <li><strong>矢量图</strong>：显示色彩饱和度和色相</li>
+                        <li><strong>直方图</strong>：显示整体曝光分布</li>
+                        <li><strong>假色显示</strong>：直观显示曝光问题区域</li>
+                        <li>养成看示波器的习惯，不要只依赖肉眼判断</li>
+                    </ul>
+                    
+                    <h4>色彩理论应用</h4>
+                    <ul>
+                        <li><strong>色轮原理</strong>：理解色彩关系</li>
+                        <li><strong>色彩心理学</strong>：不同色彩的情感联想</li>
+                        <li><strong>色彩和谐</strong>：创建视觉舒适的配色</li>
+                        <li><strong>色彩对比</strong>：突出重点元素</li>
+                        <li>建立个人色彩风格</li>
+                    </ul>
+                    
+                    <h4>肤色保护技巧</h4>
+                    <ul>
+                        <li>使用肤色限定器精确选择肤色范围</li>
+                        <li>保持肤色自然，避免过度饱和</li>
+                        <li>不同人种肤色的处理差异</li>
+                        <li>光照条件对肤色的影响</li>
+                        <li>肤色与其他色彩的平衡</li>
+                    </ul>
+                </div>
+                
+                <!-- LUTs 使用指南 -->
+                <div class="subsection" id="luts-guide">
+                    <h3>LUTs 使用指南</h3>
+                    <h4>技术 LUT vs 创意 LUT</h4>
+                    <ul>
+                        <li><strong>技术LUT</strong>：色彩空间转换，如Log转Rec.709</li>
+                        <li><strong>创意LUT</strong>：风格化调色，如电影胶片模拟</li>
+                        <li>技术LUT应在调色初期应用</li>
+                        <li>创意LUT应在一级调色后应用</li>
+                        <li>避免叠加多个创意LUT造成色彩混乱</li>
+                    </ul>
+                    
+                    <h4>LUT 应用层级</h4>
+                    <ul>
+                        <li><strong>项目LUT</strong>：应用于整个项目</li>
+                        <li><strong>片段LUT</strong>：应用于特定片段</li>
+                        <li><strong>节点LUT</strong>：应用于特定调色节点</li>
+                        <li>根据工作流选择合适的应用层级</li>
+                        <li>保持LUT应用的一致性</li>
+                    </ul>
+                    
+                    <h4>自定义 LUT 制作</h4>
+                    <ol>
+                        <li>创建调色预设</li>
+                        <li>导出为.cube或.3dl格式</li>
+                        <li>在其他项目中复用</li>
+                        <li>分享给团队成员</li>
+                        <li>建立个人LUT库</li>
+                    </ol>
+                    
+                    <h4>LUT 强度调整</h4>
+                    <ul>
+                        <li>大多数软件支持LUT强度控制</li>
+                        <li>通常30%-70%强度效果最佳</li>
+                        <li>避免100%强度造成过度处理</li>
+                        <li>根据素材特点调整强度</li>
+                        <li>混合多个LUT时注意强度叠加</li>
+                    </ul>
+                    
+                    <h4>不同场景 LUT 选择</h4>
+                    <ul>
+                        <li><strong>日景</strong>：明亮、高对比LUT</li>
+                        <li><strong>夜景</strong>：低对比、冷色调LUT</li>
+                        <li><strong>室内</strong>：暖色调、柔和LUT</li>
+                        <li><strong>户外</strong>：自然色彩、适度饱和LUT</li>
+                        <li>根据拍摄条件和创意意图选择</li>
+                    </ul>
+                </div>
+                
+                <!-- 不同风格调色预设 -->
+                <div class="subsection" id="style-presets">
+                    <h3>不同风格调色预设</h3>
+                    <h4>电影感调色</h4>
+                    <ul>
+                        <li><strong>特点</strong>：低对比、柔和色调、胶片颗粒</li>
+                        <li><strong>色彩</strong>：青橙对比、去饱和处理</li>
+                        <li><strong>阴影</strong>：抬高黑点，增加细节</li>
+                        <li><strong>高光</strong>：柔和滚降，避免硬截断</li>
+                        <li><strong>参考</strong>：ARRI LogC、RED IPP2</li>
+                    </ul>
+                    
+                    <h4>商业广告调色</h4>
+                    <ul>
+                        <li><strong>特点</strong>：高饱和、锐利对比、色彩鲜艳</li>
+                        <li><strong>色彩</strong>：强化品牌色彩、高饱和度</li>
+                        <li><strong>对比</strong>：高对比度，突出产品</li>
+                        <li><strong>清晰度</strong>：增加细节和纹理</li>
+                        <li><strong>目标</strong>：吸引注意力，促进购买</li>
+                    </ul>
+                    
+                    <h4>纪录片调色</h4>
+                    <ul>
+                        <li><strong>特点</strong>：自然真实、轻微增强、保持纪实感</li>
+                        <li><strong>色彩</strong>：准确还原，避免过度风格化</li>
+                        <li><strong>一致性</strong>：多机位素材色彩统一</li>
+                        <li><strong>真实性</strong>：保留现场光线特征</li>
+                        <li><strong>目的</strong>：增强观看体验，不干扰内容</li>
+                    </ul>
+                    
+                    <h4>音乐视频调色</h4>
+                    <ul>
+                        <li><strong>特点</strong>：高对比、创意色彩、动态变化</li>
+                        <li><strong>色彩</strong>：大胆用色、色彩跳跃</li>
+                        <li><strong>节奏</strong>：调色随音乐节奏变化</li>
+                        <li><strong>效果</strong>：添加光晕、眩光等特效</li>
+                        <li><strong>风格</strong>：配合音乐风格和艺人形象</li>
+                    </ul>
+                    
+                    <h4>婚礼摄影调色</h4>
+                    <ul>
+                        <li><strong>特点</strong>：温暖色调、皮肤优化、浪漫氛围</li>
+                        <li><strong>色彩</strong>：暖色主导、柔和粉色</li>
+                        <li><strong>肤色</strong>：自然健康、避免过度美化</li>
+                        <li><strong>氛围</strong>：柔焦效果、光晕处理</li>
+                        <li><strong>情感</strong>：突出幸福、温馨感觉</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 资源中心模块 -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">📚 资源中心</h2>
+                </div>
+                
+                <!-- 推荐设备清单 -->
+                <div class="subsection" id="equipment-recommendations">
+                    <h3>推荐设备清单</h3>
+                    <h4>相机推荐（预算分档）</h4>
+                    
+                    <h5>入门级（5000-15000元）</h5>
+                    <ul>
+                        <li>Sony A7C II / A7CR</li>
+                        <li>Canon R8 / R6 Mark II</li>
+                        <li>Nikon Z6 II / Z8</li>
+                        <li>Fujifilm X-H2S</li>
+                    </ul>
+                    
+                    <h5>专业级（15000-40000元）</h5>
+                    <ul>
+                        <li>Sony A7S III / FX3</li>
+                        <li>Canon R5 C / C70</li>
+                        <li>Blackmagic Pocket 6K Pro</li>
+                        <li>Z CAM E2-F6</li>
+                    </ul>
+                    
+                    <h5>电影级（40000元以上）</h5>
+                    <ul>
+                        <li>RED Komodo / V-Raptor</li>
+                        <li>ARRI Alexa Mini LF</li>
+                        <li>Blackmagic URSA Mini Pro 12K</li>
+                        <li>Canon C700 FF</li>
+                    </ul>
+                    
+                    <h4>镜头套装建议</h4>
+                    <ul>
+                        <li><strong>索尼E卡口</strong>：Sigma 16mm f/1.4 + Sony 24mm f/1.4 GM + Sony 50mm f/1.2 GM + Sony 85mm f/1.4 GM</li>
+                        <li><strong>佳能RF卡口</strong>：Canon RF 16mm f/2.8 + RF 24mm f/1.8 + RF 50mm f/1.2L + RF 85mm f/1.2L</li>
+                        <li><strong>富士X卡口</strong>：XF 16mm f/1.4 + XF 23mm f/1.4 + XF 35mm f/1.4 + XF 56mm f/1.2</li>
+                        <li><strong>电影镜头</strong>：Sigma Cine Prime系列、Rokinon Xeen系列</li>
+                    </ul>
+                    
+                    <h4>灯光设备清单</h4>
+                    <ul>
+                        <li><strong>入门级</strong>：Godox SL60W + 柔光箱套装</li>
+                        <li><strong>中级</strong>：Aputure Amaran F21c + Light Dome II</li>
+                        <li><strong>专业级</strong>：ARRI SkyPanel S360 + DMX控制器</li>
+                        <li><strong>便携补光</strong>：DJI Pocket 3 Creator Combo补光灯</li>
+                    </ul>
+                    
+                    <h4>音频录制设备</h4>
+                    <ul>
+                        <li><strong>无线麦克风</strong>：DJI Mic 2、Rode Wireless GO II</li>
+                        <li><strong>枪式麦克风</strong>：Rode NTG5、Sennheiser MKH416</li>
+                        <li><strong>录音机</strong>：Zoom H6、Sound Devices MixPre-3</li>
+                        <li><strong>监听耳机</strong>：Sony MDR-7506、Audio-Technica ATH-M50x</li>
+                    </ul>
+                    
+                    <h4>稳定器和配件</h4>
+                    <ul>
+                        <li><strong>手持稳定器</strong>：DJI RS3 Pro、Zhiyun Weebill 3</li>
+                        <li><strong>滑轨</strong>：Edelkrone SliderONE v2</li>
+                        <li><strong>三脚架</strong>：Manfrotto MVH502A + MT055XPRO3</li>
+                        <li><strong>监视器</strong>：Atomos Ninja V+、SmallHD Focus 7</li>
+                        <li><strong>存储卡</strong>：SanDisk Extreme PRO CFexpress Type B</li>
+                    </ul>
+                </div>
+                
+                <!-- 软件工具合集 -->
+                <div class="subsection" id="software-tools">
+                    <h3>软件工具合集</h3>
+                    <h4>免费插件推荐</h4>
+                    <ul>
+                        <li><strong>Color Grading</strong>：FilmConvert Free、Dehancer Free</li>
+                        <li><strong>VFX</strong>：HitFilm Express、Blender</li>
+                        <li><strong>Audio</strong>：Audacity、Reaper (60天试用)</li>
+                        <li><strong>Motion Graphics</strong>：Natron、Synfig Studio</li>
+                    </ul>
+                    
+                    <h4>付费插件评测</h4>
+                    <ul>
+                        <li><strong>Red Giant Universe</strong>：全面的特效和转场插件包</li>
+                        <li><strong>Boris FX Sapphire</strong>：专业级视觉效果</li>
+                        <li><strong>Video Copilot Element 3D</strong>：3D对象集成</li>
+                        <li><strong>Neat Video</strong>：专业降噪工具</li>
+                        <li><strong>Magic Bullet Suite</strong>：调色和风格化工具</li>
+                    </ul>
+                    
+                    <h4>素材网站汇总</h4>
+                    <ul>
+                        <li><strong>Stock Footage</strong>：Artgrid、Pond5、Storyblocks</li>
+                        <li><strong>Music & SFX</strong>：Epidemic Sound、AudioJungle、FreeSound</li>
+                        <li><strong>Templates</strong>：Motion Array、Envato Elements</li>
+                        <li><strong>LUTs</strong>：LUTs.com、Ground Control Color</li>
+                        <li><strong>Fonts</strong>：Google Fonts、Adobe Fonts、Font Squirrel</li>
+                    </ul>
+                    
+                    <h4>字体和音乐资源</h4>
+                    <ul>
+                        <li><strong>免费商用字体</strong>：思源黑体、阿里巴巴普惠体、站酷系列</li>
+                        <li><strong>英文字体</strong>：Montserrat、Roboto、Open Sans</li>
+                        <li><strong>免版税音乐</strong>：YouTube Audio Library、Free Music Archive</li>
+                        <li><strong>音效库</strong>：BBC Sound Effects、Freesound.org</li>
+                    </ul>
+                    
+                    <h4>模板和预设包</h4>
+                    <ul>
+                        <li><strong>Premiere Pro Templates</strong>：Motion Array、Mixkit</li>
+                        <li><strong>DaVinci Resolve Powergrades</strong>：CineD、Casey Faris</li>
+                        <li><strong>After Effects Templates</strong>：Videohive、Motion Bro</li>
+                        <li><strong>Lightroom Presets</strong>：Mastin Labs、VSCO</li>
+                        <li><strong>Final Cut Pro Effects</strong>：FxFactory、Pixel Film Studios</li>
+                    </ul>
+                </div>
+                
+                <!-- 学习资源链接 -->
+                <div class="subsection" id="learning-resources">
+                    <h3>学习资源链接</h3>
+                    <h4>在线课程平台</h4>
+                    <ul>
+                        <li><strong>MasterClass</strong>：Martin Scorsese、Werner Herzog等大师课程</li>
+                        <li><strong>LinkedIn Learning</strong>：Adobe官方认证课程</li>
+                        <li><strong>Udemy</strong>：DaVinci Resolve、Premiere Pro实战课程</li>
+                        <li><strong>Coursera</strong>：电影制作专业证书课程</li>
+                        <li><strong>Pluralsight</strong>：技术导向的影视制作课程</li>
+                    </ul>
+                    
+                    <h4>YouTube 频道推荐</h4>
+                    <ul>
+                        <li><strong>Casey Faris</strong>：DaVinci Resolve专家</li>
+                        <li><strong>Peter McKinnon</strong>：摄影和创意技巧</li>
+                        <li><strong>DSLR Guide</strong>：电影制作教程</li>
+                        <li><strong>Corridor Crew</strong>：VFX和幕后制作</li>
+                        <li><strong>Every Frame a Painting</strong>：电影分析</li>
+                    </ul>
+                    
+                    <h4>专业书籍清单</h4>
+                    <ul>
+                        <li><strong>《电影摄影：理论与实践》</strong> - Blain Brown</li>
+                        <li><strong>《剪辑的语法》</strong> - Roy Thompson</li>
+                        <li><strong>《色彩校正手册》</strong> - Alexis Van Hurkman</li>
+                        <li><strong>《导演的摄影课》</strong> - 杰奎琳·弗洛斯特</li>
+                        <li><strong>《电影照明器材与操作指南》</strong> - 白铁军</li>
+                    </ul>
+                    
+                    <h4>行业论坛和社区</h4>
+                    <ul>
+                        <li><strong>Reddit r/Filmmakers</strong>：全球影视制作社区</li>
+                        <li><strong>Blackmagic Forum</strong>：DaVinci Resolve官方论坛</li>
+                        <li><strong>Adobe Community</strong>：Premiere Pro用户社区</li>
+                        <li><strong>影视工业网</strong>：中文影视制作交流平台</li>
+                        <li><strong>新片场</strong>：国内创作者社区</li>
+                    </ul>
+                    
+                    <h4>技术博客订阅</h4>
+                    <ul>
+                        <li><strong>No Film School</strong>：独立电影制作新闻和教程</li>
+                        <li><strong>StudioBinder Blog</strong>：电影制作流程和工具</li>
+                        <li><strong>ProVideo Coalition</strong>：专业视频制作技术</li>
+                        <li><strong>狼族摄影</strong>：中文摄影技术博客</li>
+                        <li><strong>影视飓风</strong>：中文影视制作技术分享</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>🎬 影视制作知识库 | 专业摄影与后期制作完整指南</p>
+            <p>© 2026 由 OpenClaw AI 助手生成 | 持续更新的专业资源</p>
+        </footer>
+    </div>
+    
+    <script>
+        // 添加简单的平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // 返回顶部按钮（可选）
+        // 可以在这里添加更多交互功能
+    </script>
+</body>
+</html>

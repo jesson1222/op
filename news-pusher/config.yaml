@@ -1,0 +1,62 @@
+# 新闻推送配置
+
+# ============ 推送渠道配置 ============
+
+# Telegram 配置（二选一）
+telegram:
+  enabled: true
+  bot_token: "YOUR_BOT_TOKEN_HERE"  # 从 @BotFather 获取
+  chat_id: "@your_channel"  # 频道 ID 或 @username
+
+# 飞书 webhook 配置（二选一）
+feishu:
+  enabled: false
+  webhook_url: "https://open.feishu.cn/open-apis/bot/v2/hook/YOUR_WEBHOOK"
+
+# ============ 推送时间配置 ============
+
+schedule:
+  timezone: "Asia/Shanghai"
+  times: ["09:00"]  # 每天推送时间，可多个 ["09:00", "18:00"]
+  max_items_per_push: 10  # 每次推送最多几条新闻
+
+# ============ RSS 源配置 ============
+
+feeds:
+  # AI 科技类
+  ai:
+    path: feeds/ai.yaml
+    enabled: true
+    title: "🤖 AI 科技"
+    emoji: "🤖"
+  
+  # 影视器材类
+  camera:
+    path: feeds/camera.yaml
+    enabled: true
+    title: "🎬 影视器材"
+    emoji: "🎬"
+  
+  # 摄影类
+  photography:
+    path: feeds/photography.yaml
+    enabled: true
+    title: "📷 摄影"
+    emoji: "📷"
+
+# ============ 内容过滤配置 ============
+
+filter:
+  # 包含关键词（可选）
+  include_keywords: []
+  # 排除关键词（可选）
+  exclude_keywords: ["广告", "推广", "赞助"]
+  # 最小标题长度（过滤太短的标题）
+  min_title_length: 5
+
+# ============ 日志配置 ============
+
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: "logs/pusher.log"
+  history_file: "logs/history.json"  # 记录已推送的新闻，避免重复
