@@ -26,12 +26,39 @@ news-pusher/
 4. 编辑 `config.yaml`，填入 Token 和频道 ID
 5. 运行 `python3 pusher.py` 测试
 
-### 方式二：飞书 webhook
+### 方式二：飞书企业应用（推荐）
+
+使用飞书开放平台的企业自建应用，更稳定可靠：
+
+1. **配置应用**
+   ```bash
+   cd /Users/jesson/.openclaw/workspace/news-pusher
+   ./setup_feishu_app.sh
+   ```
+   按提示输入 App ID、App Secret 和群组 ID
+
+2. **或手动配置**
+   - 编辑 `config_feishu_app.yaml`
+   - 填入从飞书开放平台获取的凭证
+   - 详见：`FEISHU_APP_GUIDE.md`
+
+3. **测试推送**
+   ```bash
+   source venv/bin/activate
+   python3 pusher_feishu_app.py test
+   ```
+
+4. **正式推送**
+   ```bash
+   python3 pusher_feishu_app.py
+   ```
+
+### 方式三：飞书 webhook（自定义机器人）
 
 1. 在飞书群组添加「自定义机器人」
-2. 获取 webhook 地址
+2. 获取 Webhook 地址
 3. 编辑 `config.yaml`，填入 webhook URL
-4. 运行 `python3 pusher.py` 测试
+4. 运行测试：`./test_quick.sh "YOUR_WEBHOOK_URL"`
 
 ### 方式三：RSS-to-Telegram-Bot（免代码）
 

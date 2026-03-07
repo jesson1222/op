@@ -1,0 +1,55 @@
+# 飞书企业应用配置
+
+# ============ 飞书开放平台配置 ============
+
+# 应用凭证（从飞书开放平台获取）
+feishu_app:
+  app_id: "cli_xxxxxxxxxxxxx"        # 替换为你的 App ID
+  app_secret: "xxxxxxxxxxxxxxxx"      # 替换为你的 App Secret
+
+# 接收消息的群组 ID
+# 获取方式：打开飞书群组 → URL 中的 chat/ 后面的部分
+# 例如：https://applink.feishu.cn/client/chat/oc_xxxxxxxxxx
+# 则 chat_id 为：oc_xxxxxxxxxx
+chat_id: "oc_xxxxxxxxxxxxx"           # 替换为你的群组 ID
+
+# ============ 推送配置 ============
+
+schedule:
+  timezone: "Asia/Shanghai"
+  times: ["09:00"]  # 每天推送时间
+  max_items_per_push: 10  # 每次最多几条新闻
+
+# ============ RSS 源配置 ============
+
+feeds:
+  ai:
+    path: feeds/ai.yaml
+    enabled: true
+    title: "🤖 AI 科技"
+    emoji: "🤖"
+  
+  camera:
+    path: feeds/camera.yaml
+    enabled: true
+    title: "🎬 影视器材"
+    emoji: "🎬"
+  
+  photography:
+    path: feeds/photography.yaml
+    enabled: true
+    title: "📷 摄影"
+    emoji: "📷"
+
+# ============ 内容过滤 ============
+
+filter:
+  exclude_keywords: ["广告", "推广", "赞助"]
+  min_title_length: 5
+
+# ============ 日志配置 ============
+
+logging:
+  level: "INFO"
+  file: "logs/pusher.log"
+  history_file: "logs/history.json"

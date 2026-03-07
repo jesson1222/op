@@ -10,8 +10,8 @@ telegram:
 
 # 飞书 webhook 配置（二选一）
 feishu:
-  enabled: false
-  webhook_url: "https://open.feishu.cn/open-apis/bot/v2/hook/YOUR_WEBHOOK"
+  enabled: true
+  webhook_url: "PLEASE_FILL_WEBHOOK_HERE"  # 请替换为你的飞书 webhook 地址
 
 # ============ 推送时间配置 ============
 
