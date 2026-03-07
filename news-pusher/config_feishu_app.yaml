@@ -4,14 +4,9 @@
 
 # 应用凭证（从飞书开放平台获取）
 feishu_app:
-  app_id: "cli_xxxxxxxxxxxxx"        # 替换为你的 App ID
-  app_secret: "xxxxxxxxxxxxxxxx"      # 替换为你的 App Secret
-
-# 接收消息的群组 ID
-# 获取方式：打开飞书群组 → URL 中的 chat/ 后面的部分
-# 例如：https://applink.feishu.cn/client/chat/oc_xxxxxxxxxx
-# 则 chat_id 为：oc_xxxxxxxxxx
-chat_id: "oc_xxxxxxxxxxxxx"           # 替换为你的群组 ID
+  app_id: "cli_a91b830db038dcef"        # ✅ 已配置
+  app_secret: "CmDyBFAR1PzFGWjtQf36NeVrlnLnGqCa"      # ✅ 已配置
+  chat_id: "oc_5c168da770548db5e961d35e5eef8e80"           # ✅ 已配置
 
 # ============ 推送配置 ============
 

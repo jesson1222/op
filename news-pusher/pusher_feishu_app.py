@@ -154,7 +154,9 @@ class NewsPusher:
     
     def save_history(self):
         """保存推送历史"""
-        history_file = LOGS_DIR / self.config.get('logging', {}).get('history_file', 'history.json')
+        history_filename = self.config.get('logging', {}).get('history_file', 'history.json')
+        history_file = LOGS_DIR / history_filename
+        LOGS_DIR.mkdir(exist_ok=True)
         with open(history_file, 'w', encoding='utf-8') as f:
             json.dump(self.history, f, ensure_ascii=False, indent=2)
     

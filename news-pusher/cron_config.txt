@@ -1,0 +1,10 @@
+# 新闻推送定时任务配置
+
+# 编辑 crontab
+crontab -e
+
+# 添加以下行（每天早上 9 点推送）
+0 9 * * * cd /Users/jesson/.openclaw/workspace/news-pusher && source venv/bin/activate && python3 pusher_feishu_app.py >> logs/pusher.log 2>&1
+
+# 或者使用完整路径
+# 0 9 * * * /bin/bash -c "cd /Users/jesson/.openclaw/workspace/news-pusher && source venv/bin/activate && python3 pusher_feishu_app.py >> logs/pusher.log 2>&1"
