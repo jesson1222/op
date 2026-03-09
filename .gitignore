@@ -18,3 +18,46 @@ node_modules/
 # 临时文件
 *.tmp
 *.bak
+
+# ============ 敏感文件 (不要提交) ============
+
+# 环境变量和密钥
+.env
+.env.*
+*.env
+secrets/
+credentials/
+
+# Token 文件
+tokens.json
+tokens.yaml
+*.token
+*.pat
+*_token
+*_secret
+
+# OpenClaw 敏感配置
+openclaw.json.bak*
+openclaw.json.backup*
+credentials/
+identity/
+
+# SSH 密钥
+*.pem
+*.key
+id_rsa
+id_ed25519
+
+# 数据库文件
+*.db
+*.sqlite
+*.sqlite3
+
+# 日志和缓存
+logs/
+*.log
+.cache/
+
+# 本地配置
+local-config.json
+config.local.*
