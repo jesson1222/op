@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  xiaohongshu-publisher:
+    build: .
+    container_name: xiaohongshu-publisher
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      # 持久化 Cookie（登录一次后永久保存）
+      - ./data:/app/data
+      # 图片目录（放置要发布的图片）
+      - ./images:/app/images
+    network_mode: host
+    restart: "no"
+    # 首次运行需要显示界面用于登录
+    # 后续可以改为 headless 模式

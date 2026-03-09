@@ -11,6 +11,9 @@
     },
     "xiaohongshu": {
       "baseUrl": "http://localhost:18060/mcp"
+    },
+    "xiaohongshu-mcp": {
+      "baseUrl": "http://localhost:18060/mcp"
     }
   },
   "imports": []

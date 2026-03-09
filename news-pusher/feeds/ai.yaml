@@ -5,37 +5,37 @@
   category: AI
   language: en
 
-- name: AI News (AIBase)
-  url: https://news.aibase.com/news/rss
-  category: AI
-  language: zh
+# - name: AI News (AIBase)  # 返回 0 条目
+#   url: https://news.aibase.com/news/rss
+#   category: AI
+#   language: zh
 
-- name: The Verge AI
-  url: https://www.theverge.com/ai-automation/rss/index.xml
-  category: AI
-  language: en
+# - name: The Verge AI  # 返回 0 条目
+#   url: https://www.theverge.com/ai-automation/rss/index.xml
+#   category: AI
+#   language: en
 
-- name: GitHub AI Trending
-  url: https://rsshub.app/github/trending/daily/any/any
-  category: AI
-  language: en
+# - name: GitHub AI Trending  # RSSHub 不稳定
+#   url: https://rsshub.app/github/trending/daily/any/any
+#   category: AI
+#   language: en
 
-- name: Hugging Face Blog
-  url: https://huggingface.co/blog/feed.xml
-  category: AI
-  language: en
+# - name: Hugging Face Blog  # 超时
+#   url: https://huggingface.co/blog/feed.xml
+#   category: AI
+#   language: en
 
-- name: OpenAI Blog
-  url: https://openai.com/blog/rss
-  category: AI
-  language: en
+# - name: OpenAI Blog  # 可能超时
+#   url: https://openai.com/blog/rss
+#   category: AI
+#   language: en
 
-- name: 机器之心
-  url: https://www.jiqizhixin.com/rss
-  category: AI
-  language: zh
+# - name: 机器之心  # 可能超时
+#   url: https://www.jiqizhixin.com/rss
+#   category: AI
+#   language: zh
 
-- name: 量子位
-  url: https://www.qbitai.com/feed
-  category: AI
-  language: zh
+# - name: 量子位  # 可能超时
+#   url: https://www.qbitai.com/feed
+#   category: AI
+#   language: zh

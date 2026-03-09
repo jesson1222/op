@@ -1,0 +1,61 @@
+{
+  "prompt": {
+    "3": {
+      "class_type": "KSampler",
+      "inputs": {
+        "cfg": 7,
+        "denoise": 1,
+        "latent_image": ["5", 0],
+        "model": ["4", 0],
+        "negative": ["7", 0],
+        "positive": ["6", 0],
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "seed": 1234567890,
+        "steps": 25
+      }
+    },
+    "4": {
+      "class_type": "CheckpointLoaderSimple",
+      "inputs": {
+        "ckpt_name": "Realistic_Vision_V6.0_B1_pruned.safetensors"
+      }
+    },
+    "5": {
+      "class_type": "EmptyLatentImage",
+      "inputs": {
+        "batch_size": 1,
+        "height": 1024,
+        "width": 768
+      }
+    },
+    "6": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "clip": ["4", 1],
+        "text": "professional product photography, high performance tactical flashlight, aluminum alloy body, black matte finish, LED beam, dramatic lighting, dark background, studio lighting, commercial advertisement, ultra detailed, 8k, photorealistic --ar 3:4"
+      }
+    },
+    "7": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "clip": ["4", 1],
+        "text": "ugly, deformed, blurry, low quality, distorted, watermark, text, signature, human, person, hands"
+      }
+    },
+    "8": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": ["3", 0],
+        "vae": ["4", 2]
+      }
+    },
+    "9": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "filename_prefix": "flashlight_product",
+        "images": ["8", 0]
+      }
+    }
+  }
+}

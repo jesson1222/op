@@ -42,9 +42,15 @@ filter:
   exclude_keywords: ["广告", "推广", "赞助"]
   min_title_length: 5
 
+# ============ 翻译配置 ============
+
+# 跳过翻译（直接推送英文原文，避免翻译 API 超时）
+# 设置为 false 时，英文新闻会自动翻译成中文
+skip_translation: false
+
 # ============ 日志配置 ============
 
 logging:
   level: "INFO"
-  file: "logs/pusher.log"
-  history_file: "logs/history.json"
+  file: "pusher.log"
+  history_file: "history.json"

@@ -1,0 +1,58 @@
+# 反向提示词 (Negative Prompt)
+
+## 通用低质量元素
+```
+ugly, deformed, blurry, low quality, distorted, watermark, signature, text, username, logo, brand name, cropped, out of frame, cut off, poorly drawn, amateur, messy, cluttered
+```
+
+## 光影问题
+```
+overexposed, underexposed, bad lighting, harsh shadows, flat lighting, unnatural lighting, noise, grainy, artifacts, compression artifacts
+```
+
+## 结构问题
+```
+disfigured, mutated, extra limbs, missing parts, floating objects, wrong perspective, unrealistic, cartoon, 3d render, cgi, plastic, fake
+```
+
+## 颜色问题
+```
+washed out colors, oversaturated, wrong colors, color cast, banding, posterization, dull, muddy colors
+```
+
+## 细节问题
+```
+low resolution, pixelated, soft focus, out of focus, motion blur, depth of field, bokeh, tilt shift
+```
+
+---
+
+## 完整反向提示词 (推荐)
+
+```
+ugly, deformed, blurry, low quality, distorted, watermark, signature, text, username, logo, brand name, cropped, out of frame, cut off, poorly drawn, amateur, messy, cluttered, overexposed, underexposed, bad lighting, harsh shadows, noise, grainy, artifacts, disfigured, mutated, wrong perspective, unrealistic, cartoon, 3d render, cgi, plastic, fake, washed out colors, oversaturated, wrong colors, low resolution, pixelated, soft focus, out of focus, motion blur
+```
+
+---
+
+## 使用示例 (ComfyUI)
+
+```json
+{
+  "7": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": ["4", 1],
+      "text": "ugly, deformed, blurry, low quality, distorted, watermark, signature, text, logo, bad lighting, noise, artifacts, disfigured, wrong perspective, cartoon, 3d render, plastic, oversaturated, pixelated, out of focus"
+    }
+  }
+}
+```
+
+---
+
+**根据参考图片风格，建议正向提示词：**
+
+```
+professional product photography, [主体], studio lighting, clean background, high quality, detailed, 8k, photorealistic, sharp focus, natural colors --ar 3:4
+```

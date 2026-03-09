@@ -15,22 +15,22 @@
   category: Photography
   language: en
 
-- name: 知乎摄影话题
-  url: https://rsshub.app/zhihu/topic/1955144512
-  category: Photography
-  language: zh
+# - name: 知乎摄影话题  # RSSHub 不稳定
+#   url: https://rsshub.app/zhihu/topic/1955144512
+#   category: Photography
+#   language: zh
 
-- name: 图虫摄影
-  url: https://rsshub.app/tuchong/hot
-  category: Photography
-  language: zh
+# - name: 图虫摄影  # RSSHub 不稳定
+#   url: https://rsshub.app/tuchong/hot
+#   category: Photography
+#   language: zh
 
-- name: 500px Popular
-  url: https://rsshub.app/500px/popular
-  category: Photography
-  language: en
+# - name: 500px Popular  # RSSHub 不稳定
+#   url: https://rsshub.app/500px/popular
+#   category: Photography
+#   language: en
 
-- name: 少数派摄影
-  url: https://rsshub.app/sspai/author/194469
-  category: Photography
-  language: zh
+# - name: 少数派摄影  # RSSHub 不稳定
+#   url: https://rsshub.app/sspai/author/194469
+#   category: Photography
+#   language: zh

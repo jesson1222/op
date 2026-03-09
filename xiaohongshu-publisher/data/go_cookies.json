@@ -1,0 +1,47 @@
+[
+  {
+    "Name": "loadts",
+    "Value": "1773061869116",
+    "Domain": ".xiaohongshu.com",
+    "Path": "/",
+    "Expires": "2027-03-09T21:25:00Z",
+    "Secure": true,
+    "HttpOnly": false
+  },
+  {
+    "Name": "web_session",
+    "Value": "0400698f9dcea556274be80e9f3b4b7913a241",
+    "Domain": ".xiaohongshu.com",
+    "Path": "/",
+    "Expires": "2027-03-09T21:25:00Z",
+    "Secure": true,
+    "HttpOnly": false
+  },
+  {
+    "Name": "access-token-creator.xiaohongshu.com",
+    "Value": "customer.creator.AT-68c517615242737009754115rkm4b14nls7f67l5",
+    "Domain": "creator.xiaohongshu.com",
+    "Path": "/",
+    "Expires": "2027-03-09T21:25:00Z",
+    "Secure": true,
+    "HttpOnly": false
+  },
+  {
+    "Name": "galaxy_creator_session_id",
+    "Value": "Jn3gclayxRoalRoqKBWRMmMWkBdXG9wvVOVx",
+    "Domain": ".xiaohongshu.com",
+    "Path": "/",
+    "Expires": "2027-03-09T21:25:00Z",
+    "Secure": true,
+    "HttpOnly": false
+  },
+  {
+    "Name": "id_token",
+    "Value": "VjEAAF7/au7eBQuv5VIzU53H0ADI4Vb3OIWZiFv5RtmoJnrt0Ih9g+wxvFoh0q9tjtrfkrDS0uti1dsyd3qk9TiQPce9cpKyMvoXUWqAyg8Z95af8TdLyenjkEebGGaIpqxoGHXV",
+    "Domain": ".xiaohongshu.com",
+    "Path": "/",
+    "Expires": "2027-03-09T21:25:00Z",
+    "Secure": true,
+    "HttpOnly": false
+  }
+]

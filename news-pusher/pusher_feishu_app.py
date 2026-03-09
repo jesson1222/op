@@ -15,6 +15,20 @@ import requests
 from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Any
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+# 禁用代理（避免系统代理干扰）
+os.environ['HTTP_PROXY'] = ''
+os.environ['http_proxy'] = ''
+os.environ['HTTPS_PROXY'] = ''
+os.environ['https_proxy'] = ''
+os.environ['NO_PROXY'] = '*'
+os.environ['ALL_PROXY'] = ''
+
+# 创建不信任环境配置的 Session（避免系统代理）
+_requests_session = requests.Session()
+_requests_session.trust_env = False
+_requests_session.proxies = {}  # 明确设置空代理
 
 # 项目根目录
 BASE_DIR = Path(__file__).parent
@@ -43,7 +57,7 @@ class FeishuAPI:
             "app_secret": self.app_secret
         }
         
-        response = requests.post(url, json=payload, timeout=10)
+        response = _requests_session.post(url, json=payload, timeout=10)
         result = response.json()
         
         if result.get('code') == 0:
@@ -71,7 +85,7 @@ class FeishuAPI:
         
         params = {"receive_id_type": "chat_id"}
         
-        response = requests.post(url, headers=headers, json=payload, params=params, timeout=10)
+        response = _requests_session.post(url, headers=headers, json=payload, params=params, timeout=10)
         result = response.json()
         
         if result.get('code') == 0:
@@ -99,7 +113,7 @@ class FeishuAPI:
         
         params = {"receive_id_type": "chat_id"}
         
-        response = requests.post(url, headers=headers, json=payload, params=params, timeout=10)
+        response = _requests_session.post(url, headers=headers, json=payload, params=params, timeout=10)
         result = response.json()
         
         if result.get('code') == 0:
@@ -118,13 +132,113 @@ class FeishuAPI:
             "Authorization": f"Bearer {token}"
         }
         
-        response = requests.get(url, headers=headers, timeout=10)
+        response = _requests_session.get(url, headers=headers, timeout=10)
         result = response.json()
         
         if result.get('code') == 0:
             return result.get('data', {})
         else:
             raise Exception(f"获取群组信息失败：{result}")
+
+
+class Translator:
+    """翻译器 - 使用免费翻译 API"""
+    
+    def __init__(self):
+        self.cache = {}  # 翻译缓存
+        # 使用 Google 翻译的免费接口
+        self.api_url = "https://translate.googleapis.com/translate_a/single"
+    
+    def translate(self, text: str, source: str = "en", target: str = "zh") -> str:
+        """翻译文本"""
+        if not text or len(text.strip()) < 2:
+            return text
+        
+        # 检查缓存
+        cache_key = f"{source}->{target}:{text[:100]}"
+        if cache_key in self.cache:
+            return self.cache[cache_key]
+        
+        # 检测是否已经是中文
+        if self._is_chinese(text):
+            return text
+        
+        try:
+            # 使用 Google 翻译免费接口
+            params = {
+                "client": "gtx",
+                "sl": source,
+                "tl": target,
+                "dt": "t",
+                "q": text[:500],  # 限制长度
+                "ie": "UTF-8",
+                "oe": "UTF-8"
+            }
+            # 缩短超时时间到 5 秒
+            response = _requests_session.get(self.api_url, params=params, timeout=5)
+            
+            if response.status_code == 200:
+                result = response.json()
+                # 提取翻译结果
+                translated_parts = []
+                for sentence in result[0]:
+                    if sentence and sentence[0]:
+                        translated_parts.append(sentence[0])
+                
+                translated = ''.join(translated_parts)
+                if translated:
+                    self.cache[cache_key] = translated
+                    return translated
+            
+            # 翻译失败返回原文
+            return text
+            
+        except Exception as e:
+            # 静默失败，返回原文
+            return text
+    
+    def _is_chinese(self, text: str) -> bool:
+        """检测文本是否包含中文"""
+        for char in text:
+            if '\u4e00' <= char <= '\u9fff':
+                return True
+        return False
+    
+    def translate_batch(self, items: List[Dict]) -> List[Dict]:
+        """批量翻译新闻"""
+        translated_items = []
+        
+        for i, item in enumerate(items, 1):
+            print(f"  🔄 [{i}/{len(items)}] {item.get('title', '')[:50]}...")
+            translated_item = item.copy()
+            try:
+                # 只翻译英文标题和摘要
+                title = item.get('title', '')
+                summary = item.get('summary', '')[:100]
+                
+                # 检测是否为英文（简单检测：包含常见英文字符）
+                if any(ord(c) > 127 for c in title) and not any(c.isalpha() for c in title):
+                    # 已经是中文，跳过翻译
+                    translated_items.append(translated_item)
+                    continue
+                
+                # 翻译标题
+                translated_title = self.translate(title, 'en', 'zh')
+                if translated_title:
+                    translated_item['title'] = translated_title
+                
+                # 翻译摘要
+                if summary:
+                    translated_summary = self.translate(summary, 'en', 'zh')
+                    if translated_summary:
+                        translated_item['summary'] = translated_summary
+                
+            except Exception as e:
+                print(f"    ⚠️ 翻译异常：{e}")
+            
+            translated_items.append(translated_item)
+        
+        return translated_items
 
 
 class NewsPusher:
@@ -138,6 +252,7 @@ class NewsPusher:
             self.config['feishu_app']['app_id'],
             self.config['feishu_app']['app_secret']
         )
+        self.translator = Translator()
     
     def load_config(self) -> Dict:
         """加载配置文件"""
@@ -291,13 +406,22 @@ class NewsPusher:
                 emoji = feed_info.get('emoji', '📰')
                 title = feed_info.get('title', category)
                 
+                # 🌐 翻译英文内容为中文（可配置跳过）
+                skip_translation = self.config.get('skip_translation', False)
+                if skip_translation:
+                    print(f"⏭️  跳过翻译，使用原文")
+                    translated_items = category_items
+                else:
+                    print(f"🔄 正在翻译 {len(category_items)} 条新闻...")
+                    translated_items = self.translator.translate_batch(category_items)
+                
                 # 发送交互式卡片
-                card = self.format_news_card(title, emoji, category_items)
+                card = self.format_news_card(title, emoji, translated_items)
                 if card:
                     self.feishu.send_interactive_card(chat_id, card)
                     
                     # 记录历史
-                    for item in category_items[:self.config['schedule']['max_items_per_push']]:
+                    for item in translated_items[:self.config['schedule']['max_items_per_push']]:
                         item_id = self.get_item_id(item)
                         if item_id not in self.history['pushed_ids']:
                             self.history['pushed_ids'].append(item_id)

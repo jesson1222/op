@@ -1,0 +1,61 @@
+{
+  "prompt": {
+    "3": {
+      "class_type": "KSampler",
+      "inputs": {
+        "cfg": 6,
+        "denoise": 1,
+        "latent_image": ["5", 0],
+        "model": ["4", 0],
+        "negative": ["7", 0],
+        "positive": ["6", 0],
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "seed": 2026030921,
+        "steps": 35
+      }
+    },
+    "4": {
+      "class_type": "CheckpointLoaderSimple",
+      "inputs": {
+        "ckpt_name": "Realistic_Vision_V6.0_B1_pruned.safetensors"
+      }
+    },
+    "5": {
+      "class_type": "EmptyLatentImage",
+      "inputs": {
+        "batch_size": 1,
+        "height": 1024,
+        "width": 1024
+      }
+    },
+    "6": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "clip": ["4", 1],
+        "text": "A professional logo design for Xiangshan Flashlight Film & Culture Studio, creatively combining flashlight icon with film reel elements. Modern minimalist style with vintage touch. Main colors: dark blue and silver. Professional studio branding. Vector style, sharp and clear. Elements: flashlight, film strip, camera, light beam. Clean white background, corporate identity, premium quality --ar 1:1"
+      }
+    },
+    "7": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "clip": ["4", 1],
+        "text": "ugly, deformed, blurry, low quality, distorted, watermark, signature, photorealistic, complex background, gradient, shadows, messy, cluttered, amateur"
+      }
+    },
+    "8": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": ["3", 0],
+        "vae": ["4", 2]
+      }
+    },
+    "9": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "filename_prefix": "xiangshan_logo_v2",
+        "images": ["8", 0]
+      }
+    }
+  }
+}

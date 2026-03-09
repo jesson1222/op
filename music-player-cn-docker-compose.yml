@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  # 🎵 Mopidy 音乐服务器 - 使用国内镜像
+  mopidy:
+    image: registry.cn-hangzhou.aliyuncs.com/linuxserver/mopidy:latest
+    container_name: mopidy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./mopidy/config:/config
+      - ./music:/music
+    ports:
+      - 6600:6600
+      - 6680:6680
+    restart: unless-stopped
+    networks:
+      - music-network
+
+  # Iris Web 界面 - 使用国内镜像
+  mopidy-iris:
+    image: registry.cn-hangzhou.aliyuncs.com/xridge/mopidy-iris:latest
+    container_name: mopidy-iris
+    depends_on:
+      - mopidy
+    expose:
+      - '80'
+    restart: unless-stopped
+    networks:
+      - music-network
+
+  # 🔒 Nginx Proxy Manager - 使用国内镜像
+  nginx-proxy-manager:
+    image: registry.cn-hangzhou.aliyuncs.com/jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - ./npm/data:/data
+      - ./npm/letsencrypt:/etc/letsencrypt
+    environment:
+      - TZ=Asia/Shanghai
+      - DISABLE_IPV6=true
+    restart: unless-stopped
+    networks:
+      - music-network
+
+networks:
+  music-network:
+    driver: bridge

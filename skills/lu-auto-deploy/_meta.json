@@ -1,0 +1,12 @@
+{
+  "name": "lu-auto-deploy",
+  "version": "1.0.0",
+  "description": "Docker 自动化部署技能",
+  "author": "jesson1222-ship-it",
+  "tags": ["docker", "deploy", "automation", "nas", "chinese"],
+  "language": "zh-CN",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/skills",
+  "created": "2026-03-08T00:00:00Z",
+  "updated": "2026-03-08T00:00:00Z"
+}

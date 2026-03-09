@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # 🎵 Mopidy 音乐服务器
+  mopidy:
+    image: jojo141185/mopidy:release
+    container_name: mopidy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./mopidy/config:/config
+      - ./music:/music
+    ports:
+      - 6600:6600  # MPD 端口
+      - 6680:6680  # Mopidy API + Web 界面
+    restart: unless-stopped
+    networks:
+      - music-network
+
+  # 🔒 Nginx Proxy Manager (HTTPS 反向代理)
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    ports:
+      - '80:80'    # HTTP
+      - '81:81'    # 管理面板
+      - '443:443'  # HTTPS
+    volumes:
+      - ./npm/data:/data
+      - ./npm/letsencrypt:/etc/letsencrypt
+    environment:
+      - TZ=Asia/Shanghai
+      - DISABLE_IPV6=true
+    restart: unless-stopped
+    networks:
+      - music-network
+    depends_on:
+      - mopidy
+
+networks:
+  music-network:
+    driver: bridge

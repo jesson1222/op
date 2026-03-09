@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # Mopidy 音乐服务器
+  mopidy:
+    image: lscr.io/linuxserver/mopidy:latest
+    container_name: mopidy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./mopidy/config:/config
+      - ./music:/music  # 可选：本地音乐文件夹
+    ports:
+      - 6600:6600  # MPD 端口
+      - 6680:6680  # Web 界面端口
+    restart: unless-stopped
+    networks:
+      - music-network
+
+  # Iris Web 界面（Mopidy 的漂亮前端）
+  mopidy-iris:
+    image: xridge/mopidy-iris:latest
+    container_name: mopidy-iris
+    depends_on:
+      - mopidy
+    ports:
+      - 6681:80
+    restart: unless-stopped
+    networks:
+      - music-network
+
+networks:
+  music-network:
+    driver: bridge

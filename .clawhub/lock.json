@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "skills": {
+    "free-ride": {
+      "version": "1.0.4",
+      "installedAt": 1772905314551
+    },
+    "github": {
+      "version": "1.0.0",
+      "installedAt": 1772929282859
+    },
+    "memory-hygiene": {
+      "version": "1.0.0",
+      "installedAt": 1772929287478
+    },
+    "github-issue-resolver": {
+      "version": "1.0.0",
+      "installedAt": 1772929296582
+    },
+    "elite-longterm-memory": {
+      "version": "1.2.3",
+      "installedAt": 1772929304721
+    },
+    "todoist-task-manager": {
+      "version": "1.0.0",
+      "installedAt": 1772931497802
+    },
+    "automation-workflows": {
+      "version": "0.1.0",
+      "installedAt": 1772931541764
+    }
+  }
+}

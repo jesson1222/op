@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  clawpanel:
+    image: zhaoxinyi02/clawpanel:latest
+    container_name: clawpanel
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./config:/app/config
+      - ./logs:/app/logs
+    environment:
+      - OPENCLAW_URL=http://host.docker.internal:8080
+      - OPENCLAW_API_KEY=your-api-key-here
+    restart: unless-stopped
+    network_mode: host

@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  # 🎵 Mopidy 音乐服务器（仅局域网访问）
+  mopidy:
+    image: jojo141185/mopidy:release
+    container_name: mopidy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./mopidy/config:/config
+      - ./music:/music
+    ports:
+      - 6600:6600  # MPD 端口
+      - 6680:6680  # Web 界面
+    restart: unless-stopped
+    networks:
+      - music-network
+
+networks:
+  music-network:
+    driver: bridge
