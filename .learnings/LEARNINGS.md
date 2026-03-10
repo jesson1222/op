@@ -166,6 +166,81 @@ launchctl list | grep xiaohongshu
 - Tags: openclaw, gateway, optimization, launchd
 - Pattern-Key: openclaw.gateway-optimization
 
+---
+
+## [LRN-20260310-005] no-sleep-configuration
+
+**Logged**: 2026-03-10T15:38:00+08:00
+**Priority**: high
+**Status**: resolved
+**Area**: infra
+
+### Summary
+配置 macOS 不休眠，确保服务持续运行
+
+### Details
+使用 caffeinate + launchd 实现永久不休眠：
+1. 创建 LaunchAgent 配置文件
+2. 使用 caffeinate 防止系统休眠
+3. 配置 KeepAlive 确保服务持续运行
+4. 记录运行日志
+
+### Configuration
+- **服务名**: com.no-sleep.autostart
+- **配置文件**: ~/Library/LaunchAgents/com.no-sleep.autostart.plist
+- **caffeinate 参数**: -d -i -m -s
+- **日志**: /tmp/caffeinate.log
+
+### pmset Settings
+```
+sleep: 0 (不休眠)
+displaysleep: 0 (显示器不休眠)
+disksleep: 10 (硬盘 10 分钟后休眠)
+```
+
+### Verification
+```bash
+launchctl list | grep no-sleep
+# 输出：30777	0	com.no-sleep.autostart
+```
+
+### Metadata
+- Source: user_request
+- Related Files: ~/Library/LaunchAgents/com.no-sleep.autostart.plist
+- Tags: no-sleep, caffeinate, launchd, pmset
+- Pattern-Key: macos.no-sleep-setup
+
+### Details
+执行 `openclaw gateway install --force` 优化配置：
+1. 移除嵌入的 token（安全提升）
+2. 更新 PATH 环境变量（包含所有包管理器）
+3. 更新到最新版本 (2026.3.8)
+4. 添加 ThrottleInterval 和 Umask 配置
+
+### Improvements
+**优化前**:
+- ❌ Token 嵌入在配置文件中
+- ❌ PATH 缺少 nvm, pnpm, fnm 等
+- ❌ 版本：2026.2.9
+
+**优化后**:
+- ✅ Token 动态管理
+- ✅ 完整 PATH（包含所有包管理器路径）
+- ✅ 版本：2026.3.8
+- ✅ 添加 ThrottleInterval: 1
+- ✅ 添加 Umask: 63
+
+### New PATH
+```
+/Users/jesson/.nvm:/Users/jesson/.local/bin:/Users/jesson/.npm-global/bin:/Users/jesson/bin:/Users/jesson/.volta/bin:/Users/jesson/.asdf/shims:/Users/jesson/.bun/bin:/Users/jesson/Library/Application Support/fnm/aliases/default/bin:/Users/jesson/.fnm/aliases/default/bin:/Users/jesson/Library/pnpm:/Users/jesson/.local/share/pnpm:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin
+```
+
+### Metadata
+- Source: user_request
+- Related Files: ~/Library/LaunchAgents/ai.openclaw.gateway.plist
+- Tags: openclaw, gateway, optimization, launchd
+- Pattern-Key: openclaw.gateway-optimization
+
 ### Summary
 自学习技能需要配置自动重试机制和完整的使用流程
 
