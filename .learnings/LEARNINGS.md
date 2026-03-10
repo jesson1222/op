@@ -48,6 +48,44 @@
 - **Commit**: 已创建完整的配置脚本和文档
 - **Notes**: 包含自动重试、使用指南、检查脚本
 
+---
+
+## [LRN-20260310-002] xiaohongshu-auto-publish
+
+**Logged**: 2026-03-10T12:45:00+08:00
+**Priority**: high
+**Status**: resolved
+**Area**: infra
+
+### Summary
+小红书自动发布流程已验证成功（2 篇笔记）
+
+### Details
+成功发布 2 篇专业内容：
+1. ARRI 35 解析报告 - 🎬 ARRI 35 | 电影机新标杆
+2. 三点布光法教程 - 💡 三点布光法 | 电影感秘诀
+
+### Key Learnings
+1. **Cookie 管理**：需要复制到容器内 `/app/cookies.json`
+2. **图片上传**：单张图片最稳定，多张易超时
+3. **图片质量**：Unsplash 图片质量高，适合封面
+4. **Docker 稳定性**：需要定期检查容器状态
+5. **超时设置**：`MCPORTER_CALL_TIMEOUT=120000`
+
+### Suggested Action
+建立自动发布流程：
+1. 检查 Docker 容器状态
+2. 验证 Cookie 有效性
+3. 准备高质量封面图（Unsplash/Pexels）
+4. 单图发布最稳定
+5. 发布后记录 PostID
+
+### Metadata
+- Source: conversation
+- Related Files: ~/.agent-reach/xiaohongshu-cookies.json
+- Tags: xiaohongshu, auto-publish, docker
+- Pattern-Key: xiaohongshu.stable-publish
+
 ### Summary
 自学习技能需要配置自动重试机制和完整的使用流程
 
