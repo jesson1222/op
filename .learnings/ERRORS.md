@@ -38,6 +38,38 @@
 
 ## 当前 Errors
 
-暂无记录。
+## [ERR-20260310-001] config-file-not-found
+
+**Logged**: 2026-03-10T08:52:00+08:00
+**Priority**: low
+**Status**: resolved
+**Area**: config
+
+### Resolution
+- **Resolved**: 2026-03-10T08:52:00+08:00
+- **Notes**: 使用正确路径 ~/.openclaw/openclaw.json
+
+### Summary
+尝试读取不存在的配置文件 openclaw.json
+
+### Error
+```
+ENOENT: no such file or directory, access '/Users/jesson/.openclaw/config/openclaw.json'
+```
+
+### Context
+- 操作：读取 OpenClaw 配置文件
+- 预期路径：~/.openclaw/config/openclaw.json
+- 实际路径：~/.openclaw/openclaw.json
+
+### Suggested Fix
+✅ 已解决：配置文件实际位于 `~/.openclaw/openclaw.json`，不是子目录
+
+### Metadata
+- Reproducible: no
+- Related Files: ~/.openclaw/openclaw.json
+- Resolution: 使用正确的路径
+
+---
 
 ---
