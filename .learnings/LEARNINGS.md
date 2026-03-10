@@ -229,6 +229,67 @@ launchctl list | grep no-sleep
 ### Key Insights
 1. KOMODO 6K 性价比最高 ($6K vs ARRI $50K+)
 2. 重量优势明显 (1.2kg vs 3.5kg)
+3. 6K 分辨率是主要卖点
+4. 适合独立电影人
+
+### Metadata
+- Source: user_request
+- Related Files: ~/.agent-reach/red-com-learning.md
+- Tags: red, komodo, cinema-camera, content-research
+- Pattern-Key: red.product-research
+
+---
+
+## [LRN-20260310-007] angenieux-lenses-organization
+
+**Logged**: 2026-03-10T23:02:00+08:00
+**Priority**: high
+**Status**: resolved
+**Area**: content
+
+### Summary
+整理安琴 (Angenieux) 所有镜头产品，输出 Excel 和 HTML 格式
+
+### Details
+按 Cooke 镜头分类方式整理安琴产品线：
+1. EZ 系列 (5 款) - 电子控制变焦
+2. Type 系列 (3 款) - 经典电影镜头
+3. 经典系列 (2 款) - 历史收藏级
+总计 10 款镜头，按发布年份排序 (1975-2020)
+
+### Deliverables
+- angenieux-lenses.csv (1.3KB) - Excel 格式
+- angenieux-lenses.html (19KB) - 精美网页
+- angenieux-complete-lenses.json - 原始数据
+- angenieux-completion-report.md - 完成报告
+
+### Design Features
+- 响应式布局
+- 渐变配色 (紫色系)
+- 表格悬停效果
+- 标签系统 (卡口/传感器/年份/特点)
+- 分类展示
+
+### Metadata
+- Source: user_request
+- Related Files: ~/.agent-reach/angenieux-lenses.html
+- Tags: angenieux, lenses, organization, excel, html
+- Pattern-Key: angenieux.product-organization
+
+### Details
+研究 www.red.com 产品线和技术规格：
+1. V-RAPTOR 8K VV - 旗舰型号
+2. KOMODO 6K - 入门专业款
+3. MONSTRO 8K - 经典旗舰
+4. REDCODE RAW 技术
+5. IPP2 色彩科学
+
+### Content Published
+- 🎬 RED KOMODO | 6K 电影机神器 (第 3 篇)
+
+### Key Insights
+1. KOMODO 6K 性价比最高 ($6K vs ARRI $50K+)
+2. 重量优势明显 (1.2kg vs 3.5kg)
 3. 适合独立电影人和小团队
 4. 6K 分辨率是主要卖点
 
