@@ -86,6 +86,43 @@
 - Tags: xiaohongshu, auto-publish, docker
 - Pattern-Key: xiaohongshu.stable-publish
 
+---
+
+## [LRN-20260310-003] xiaohongshu-autostart
+
+**Logged**: 2026-03-10T12:42:00+08:00
+**Priority**: high
+**Status**: resolved
+**Area**: infra
+
+### Summary
+配置 macOS 开机自动启动小红书发布系统
+
+### Details
+使用 macOS launchd 实现开机自启动：
+1. 创建 LaunchAgent plist 文件
+2. 配置延迟启动（等待 Docker）
+3. 自动复制 Cookie 文件
+4. 记录启动日志
+
+### Configuration
+- **服务名**: com.xiaohongshu.autostart
+- **配置文件**: ~/Library/LaunchAgents/com.xiaohongshu.autostart.plist
+- **启动延迟**: 15 秒（等待系统完全启动）
+- **日志**: /tmp/xiaohongshu-autostart.log
+
+### Verification
+```bash
+launchctl list | grep xiaohongshu
+# 输出：7101	0	com.xiaohongshu.autostart
+```
+
+### Metadata
+- Source: user_request
+- Related Files: ~/Library/LaunchAgents/com.xiaohongshu.autostart.plist
+- Tags: xiaohongshu, autostart, launchd, docker
+- Pattern-Key: xiaohongshu.autostart-setup
+
 ### Summary
 自学习技能需要配置自动重试机制和完整的使用流程
 
