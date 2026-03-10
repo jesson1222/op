@@ -21,3 +21,23 @@
 **推送渠道：** Telegram / 飞书（待配置）
 
 **配置位置：** `news-pusher/config.yaml`
+
+---
+
+## 🧠 自学习检查
+
+每次 heartbeat 时检查：
+
+- [ ] 是否有新的错误需要记录到 `.learnings/ERRORS.md`
+- [ ] 是否有用户纠正需要记录到 `.learnings/LEARNINGS.md`
+- [ ] 是否有待解决的 learning 需要处理
+- [ ] 是否有可以提升到 MEMORY.md 的学习内容
+
+**检查命令：**
+```bash
+# 查看待处理的 learnings
+grep -h "Status\*\*: pending" ~/.openclaw/workspace/.learnings/*.md | wc -l
+
+# 查看高优先级的 errors
+grep -B5 "Priority\*\*: high" ~/.openclaw/workspace/.learnings/ERRORS.md
+```

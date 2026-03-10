@@ -142,12 +142,18 @@ class FeishuAPI:
 
 
 class Translator:
-    """翻译器 - 使用免费翻译 API"""
+    """翻译器 - 使用百度翻译 API（国内可访问）"""
     
-    def __init__(self):
+    def __init__(self, app_id: str = None, app_key: str = None):
         self.cache = {}  # 翻译缓存
-        # 使用 Google 翻译的免费接口
-        self.api_url = "https://translate.googleapis.com/translate_a/single"
+        # 百度翻译 API v1（免费额度：QPS=1，每月 200 万字符）
+        self.api_url = "https://fanyi-api.baidu.com/api/trans/vip/translate"
+        self.app_id = app_id
+        self.app_key = app_key
+        self.use_baidu = bool(app_id and app_key)
+        
+        if not self.use_baidu:
+            print("⚠️ 未配置百度翻译 API，将跳过翻译")
     
     def translate(self, text: str, source: str = "en", target: str = "zh") -> str:
         """翻译文本"""
@@ -163,38 +169,62 @@ class Translator:
         if self._is_chinese(text):
             return text
         
+        # 未配置百度翻译，返回原文
+        if not self.use_baidu:
+            return text
+        
+        import hashlib
+        import random
+        
         try:
-            # 使用 Google 翻译免费接口
+            # 百度翻译 API v1
+            salt = random.randint(32768, 65536)
+            sign = hashlib.md5(f"{self.app_id}{text}{salt}{self.app_key}".encode('utf-8')).hexdigest()
+            
             params = {
-                "client": "gtx",
-                "sl": source,
-                "tl": target,
-                "dt": "t",
-                "q": text[:500],  # 限制长度
-                "ie": "UTF-8",
-                "oe": "UTF-8"
+                "q": text[:2000],  # 百度支持更长文本
+                "from": source,
+                "to": target,
+                "appid": self.app_id,
+                "salt": str(salt),
+                "sign": sign
             }
-            # 缩短超时时间到 5 秒
-            response = _requests_session.get(self.api_url, params=params, timeout=5)
+            
+            response = _requests_session.post(self.api_url, data=params, timeout=10)
             
             if response.status_code == 200:
                 result = response.json()
-                # 提取翻译结果
-                translated_parts = []
-                for sentence in result[0]:
-                    if sentence and sentence[0]:
-                        translated_parts.append(sentence[0])
                 
-                translated = ''.join(translated_parts)
-                if translated:
-                    self.cache[cache_key] = translated
-                    return translated
+                # 检查错误码
+                if 'error_code' in result:
+                    error_code = result.get('error_code', '')
+                    error_msg = result.get('error_msg', '')
+                    print(f"    ⚠️ 百度翻译错误 {error_code}: {error_msg}")
+                    # 52003 = 未授权，需要实名认证或开通服务
+                    if error_code == '52003':
+                        print(f"    💡 请在百度翻译控制台完成实名认证并开通【通用翻译 API】服务")
+                    return text
+                
+                # 提取翻译结果
+                if 'trans_result' in result:
+                    translated_parts = [item['dst'] for item in result['trans_result'] if 'dst' in item]
+                    translated = ''.join(translated_parts)
+                    
+                    if translated:
+                        self.cache[cache_key] = translated
+                        return translated
+                    else:
+                        print(f"    ⚠️ 翻译 API 无结果：{text[:50]}...")
+                else:
+                    print(f"    ⚠️ 翻译 API 响应格式异常：{result}")
+            else:
+                print(f"    ⚠️ 翻译 API 失败 (status={response.status_code}): {text[:50]}...")
             
-            # 翻译失败返回原文
             return text
             
         except Exception as e:
-            # 静默失败，返回原文
+            # 记录失败原因
+            print(f"    ⚠️ 翻译异常 ({type(e).__name__}): {e} - {text[:50]}...")
             return text
     
     def _is_chinese(self, text: str) -> bool:
@@ -252,7 +282,12 @@ class NewsPusher:
             self.config['feishu_app']['app_id'],
             self.config['feishu_app']['app_secret']
         )
-        self.translator = Translator()
+        
+        # 初始化翻译器（读取百度翻译配置）
+        translate_config = self.config.get('translate', {})
+        baidu_app_id = translate_config.get('baidu_app_id')
+        baidu_app_key = translate_config.get('baidu_app_key')
+        self.translator = Translator(baidu_app_id, baidu_app_key)
     
     def load_config(self) -> Dict:
         """加载配置文件"""

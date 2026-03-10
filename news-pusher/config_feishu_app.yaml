@@ -44,8 +44,19 @@ filter:
 
 # ============ 翻译配置 ============
 
-# 跳过翻译（直接推送英文原文，避免翻译 API 超时）
-# 设置为 false 时，英文新闻会自动翻译成中文
+# 百度翻译 API（推荐，国内可访问）
+# 申请地址：https://fanyi-api.baidu.com/
+# 免费额度：QPS=1，每月 200 万字符
+translate:
+  # 设置为 true 启用翻译，false 跳过翻译
+  enabled: true
+  # 百度翻译 APP ID（需自行申请）
+  baidu_app_id: "20260310002569431"
+  # 百度翻译 APP KEY（需自行申请）
+  baidu_app_key: "4BYpyDUBHCnF1OOJLp9v"
+
+# 跳过翻译（兼容旧配置，优先使用 translate.enabled）
+# 设置为 true 时，直接推送英文原文
 skip_translation: false
 
 # ============ 日志配置 ============
