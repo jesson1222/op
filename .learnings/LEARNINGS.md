@@ -123,6 +123,49 @@ launchctl list | grep xiaohongshu
 - Tags: xiaohongshu, autostart, launchd, docker
 - Pattern-Key: xiaohongshu.autostart-setup
 
+---
+
+## [LRN-20260310-004] openclaw-gateway-optimization
+
+**Logged**: 2026-03-10T15:08:00+08:00
+**Priority**: medium
+**Status**: resolved
+**Area**: infra
+
+### Summary
+优化 OpenClaw Gateway 开机自启动配置
+
+### Details
+执行 `openclaw gateway install --force` 优化配置：
+1. 移除嵌入的 token（安全提升）
+2. 更新 PATH 环境变量（包含所有包管理器）
+3. 更新到最新版本 (2026.3.8)
+4. 添加 ThrottleInterval 和 Umask 配置
+
+### Improvements
+**优化前**:
+- ❌ Token 嵌入在配置文件中
+- ❌ PATH 缺少 nvm, pnpm, fnm 等
+- ❌ 版本：2026.2.9
+
+**优化后**:
+- ✅ Token 动态管理
+- ✅ 完整 PATH（包含所有包管理器路径）
+- ✅ 版本：2026.3.8
+- ✅ 添加 ThrottleInterval: 1
+- ✅ 添加 Umask: 63
+
+### New PATH
+```
+/Users/jesson/.nvm:/Users/jesson/.local/bin:/Users/jesson/.npm-global/bin:/Users/jesson/bin:/Users/jesson/.volta/bin:/Users/jesson/.asdf/shims:/Users/jesson/.bun/bin:/Users/jesson/Library/Application Support/fnm/aliases/default/bin:/Users/jesson/.fnm/aliases/default/bin:/Users/jesson/Library/pnpm:/Users/jesson/.local/share/pnpm:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin
+```
+
+### Metadata
+- Source: user_request
+- Related Files: ~/Library/LaunchAgents/ai.openclaw.gateway.plist
+- Tags: openclaw, gateway, optimization, launchd
+- Pattern-Key: openclaw.gateway-optimization
+
 ### Summary
 自学习技能需要配置自动重试机制和完整的使用流程
 
