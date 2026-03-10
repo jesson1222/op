@@ -191,6 +191,66 @@ launchctl list | grep xiaohongshu
 - **caffeinate 参数**: -d -i -m -s
 - **日志**: /tmp/caffeinate.log
 
+### Verification
+```bash
+launchctl list | grep no-sleep
+# 输出：30777	0	com.no-sleep.autostart
+```
+
+### Metadata
+- Source: user_request
+- Related Files: ~/Library/LaunchAgents/com.no-sleep.autostart.plist
+- Tags: no-sleep, caffeinate, launchd, pmset
+- Pattern-Key: macos.no-sleep-setup
+
+---
+
+## [LRN-20260310-006] red-com-content-research
+
+**Logged**: 2026-03-10T21:53:00+08:00
+**Priority**: medium
+**Status**: resolved
+**Area**: content
+
+### Summary
+学习 RED 数字电影摄影机官网，准备专业内容
+
+### Details
+研究 www.red.com 产品线和技术规格：
+1. V-RAPTOR 8K VV - 旗舰型号
+2. KOMODO 6K - 入门专业款
+3. MONSTRO 8K - 经典旗舰
+4. REDCODE RAW 技术
+5. IPP2 色彩科学
+
+### Content Published
+- 🎬 RED KOMODO | 6K 电影机神器 (第 3 篇)
+
+### Key Insights
+1. KOMODO 6K 性价比最高 ($6K vs ARRI $50K+)
+2. 重量优势明显 (1.2kg vs 3.5kg)
+3. 适合独立电影人和小团队
+4. 6K 分辨率是主要卖点
+
+### Metadata
+- Source: user_request
+- Related Files: ~/.agent-reach/red-com-learning.md
+- Tags: red, komodo, cinema-camera, content-research
+- Pattern-Key: red.product-research
+
+### Details
+使用 caffeinate + launchd 实现永久不休眠：
+1. 创建 LaunchAgent 配置文件
+2. 使用 caffeinate 防止系统休眠
+3. 配置 KeepAlive 确保服务持续运行
+4. 记录运行日志
+
+### Configuration
+- **服务名**: com.no-sleep.autostart
+- **配置文件**: ~/Library/LaunchAgents/com.no-sleep.autostart.plist
+- **caffeinate 参数**: -d -i -m -s
+- **日志**: /tmp/caffeinate.log
+
 ### pmset Settings
 ```
 sleep: 0 (不休眠)
