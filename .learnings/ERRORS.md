@@ -76,7 +76,7 @@ ENOENT: no such file or directory, access '/Users/jesson/.openclaw/config/opencl
 
 **Logged**: 2026-03-10T09:24:00+08:00
 **Priority**: high
-**Status**: pending
+**Status**: resolved
 **Area**: infra
 
 ### Summary
@@ -95,10 +95,17 @@ Publish content timed out after 60000ms
 - 用户场景：用户不在电脑旁，无法手动更新 Cookie
 
 ### Suggested Fix
-1. 用户在电脑旁时，登录小红书获取最新 Cookie
+✅ 已解决：
+1. 用户提供最新 Cookie（通过浏览器导出）
 2. 更新 ~/.agent-reach/xiaohongshu-cookies.json
-3. 重启 Docker 容器：docker restart xiaohongshu-mcp
-4. 重新执行发布命令
+3. 复制 cookies.json 到容器：docker cp ~/.agent-reach/xiaohongshu-cookies.json xiaohongshu-mcp:/app/cookies.json
+4. 重启 Docker 容器
+5. 发布时使用单张图片避免超时
+
+### Resolution
+- **Resolved**: 2026-03-10T09:56:00+08:00
+- **PostID**: 发布成功
+- **Notes**: 多张图片上传容易超时，建议只用 1 张主图或压缩图片
 
 ### Metadata
 - Reproducible: yes
