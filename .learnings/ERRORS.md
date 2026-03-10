@@ -72,4 +72,38 @@ ENOENT: no such file or directory, access '/Users/jesson/.openclaw/config/opencl
 
 ---
 
+## [ERR-20260310-002] xiaohongshu-cookie-expired
+
+**Logged**: 2026-03-10T09:24:00+08:00
+**Priority**: high
+**Status**: pending
+**Area**: infra
+
+### Summary
+小红书 MCP Cookie 过期，无法发布内容
+
+### Error
+```
+failed to unmarshal cookies: json: cannot unmarshal object into Go value of type []*proto.NetworkCookie
+Publish content timed out after 60000ms
+```
+
+### Context
+- 操作：发布 ARRI 35 解析报告到小红书
+- 容器：xiaohongshu-mcp (Docker)
+- 状态：容器运行正常，但 Cookie 失效
+- 用户场景：用户不在电脑旁，无法手动更新 Cookie
+
+### Suggested Fix
+1. 用户在电脑旁时，登录小红书获取最新 Cookie
+2. 更新 ~/.agent-reach/xiaohongshu-cookies.json
+3. 重启 Docker 容器：docker restart xiaohongshu-mcp
+4. 重新执行发布命令
+
+### Metadata
+- Reproducible: yes
+- Related Files: ~/.agent-reach/xiaohongshu-cookies.json
+- See Also: LRN-20260310-001
+- Pattern-Key: xiaohongshu.cookie-refresh
+
 ---
