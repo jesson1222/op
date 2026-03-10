@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "maxRetries": 3,
+  "retryDelayMs": 1000,
+  "backoffMultiplier": 2,
+  "onFailure": {
+    "log": true,
+    "notify": true,
+    "fallback": "graceful-degrade"
+  },
+  "triggers": [
+    "skill-load-failure",
+    "memory-search-failure",
+    "file-write-failure"
+  ]
+}
