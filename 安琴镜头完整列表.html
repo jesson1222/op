@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安琴 (Angenieux) 完整镜头产品大全</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        header h1 { font-size: 3em; margin-bottom: 10px; font-weight: 700; }
+        header p { font-size: 1.2em; opacity: 0.9; }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px 25px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        .stat-item strong { display: block; font-size: 2em; }
+        .series-section {
+            margin: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+        .series-title {
+            font-size: 2.2em;
+            color: #1e3c72;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        .series-count {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+        }
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        th {
+            padding: 15px 10px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+        tbody tr {
+            border-bottom: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        tbody tr:hover {
+            background: #f5f7fa;
+            transform: scale(1.005);
+        }
+        tbody tr:last-child { border-bottom: none; }
+        td {
+            padding: 12px 10px;
+            color: #333;
+            font-size: 0.92em;
+        }
+        .model-name {
+            font-weight: 700;
+            color: #1e3c72;
+            font-size: 1.05em;
+        }
+        .year-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        .mount-tag {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        .sensor-tag {
+            background: #fff3e0;
+            color: #f57c00;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        .type-tag {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        footer {
+            background: #f5f5f5;
+            padding: 30px 40px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+        @media (max-width: 768px) {
+            header h1 { font-size: 2em; }
+            .series-section { margin: 20px; padding: 20px; }
+            table { font-size: 0.8em; }
+            th, td { padding: 8px 5px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 安琴 Angenieux</h1>
+            <p>法国光学传奇 · 完整镜头产品目录</p>
+            <div class="stats">
+                <div class="stat-item"><strong>1935</strong><span>创立年份</span></div>
+                <div class="stat-item"><strong>6</strong><span>产品系列</span></div>
+                <div class="stat-item"><strong>51</strong><span>镜头型号</span></div>
+                <div class="stat-item"><strong>法国</strong><span>原产地</span></div>
+            </div>
+        </header>
+
+        <div class="series-section">
+            <h2 class="series-title">🎥 EZ 系列 (电子控制变焦)</h2>
+            <p class="series-count">共 5 款 | 2016-2020 | 全画幅/Super35</p>
+            <table>
+                <thead>
+                    <tr><th>型号</th><th>卡口</th><th>焦距</th><th>光圈</th><th>年份</th><th>重量</th><th>传感器</th><th>特点</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="model-name">EZ-1</td><td><span class="mount-tag">PL/EF</span></td><td>30-90mm</td><td>T2.0</td><td><span class="year-badge">2016</span></td><td>1.9kg</td><td><span class="sensor-tag">Full Frame</span></td><td>可交换卡口，电子控制，无呼吸效应</td></tr>
+                    <tr><td class="model-name">EZ-2</td><td><span class="mount-tag">PL/EF</span></td><td>15-40mm</td><td>T2.0</td><td><span class="year-badge">2016</span></td><td>1.7kg</td><td><span class="sensor-tag">Full Frame</span></td><td>广角变焦，可交换卡口</td></tr>
+                    <tr><td class="model-name">EZ-3</td><td><span class="mount-tag">PL/EF</span></td><td>17-80mm</td><td>T2.4</td><td><span class="year-badge">2018</span></td><td>1.5kg</td><td><span class="sensor-tag">Super35</span></td><td>紧凑型，轻便</td></tr>
+                    <tr><td class="model-name">EZ-4</td><td><span class="mount-tag">PL/EF</span></td><td>28-76mm</td><td>T2.6</td><td><span class="year-badge">2019</span></td><td>1.4kg</td><td><span class="sensor-tag">Super35</span></td><td>标准变焦，紧凑设计</td></tr>
+                    <tr><td class="model-name">EZ-5</td><td><span class="mount-tag">PL/EF</span></td><td>21-56mm</td><td>T1.5</td><td><span class="year-badge">2020</span></td><td>1.6kg</td><td><span class="sensor-tag">Full Frame</span></td><td>大光圈，夜景拍摄</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="series-section">
+            <h2 class="series-title">🎥 Optimo 系列 (专业长焦变焦)</h2>
+            <p class="series-count">共 10 款 | 2014-2022 | Super35/全画幅</p>
+            <table>
+                <thead>
+                    <tr><th>型号</th><th>卡口</th><th>焦距</th><th>光圈</th><th>年份</th><th>重量</th><th>传感器</th><th>特点</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="model-name">Optimo 24-290</td><td><span class="mount-tag">PL</span></td><td>24-290mm</td><td>T2.8</td><td><span class="year-badge">2016</span></td><td>3.9kg</td><td><span class="sensor-tag">Super35</span></td><td>12 倍变焦，长焦参考</td></tr>
+                    <tr><td class="model-name">Optimo Ultra 12x</td><td><span class="mount-tag">PL</span></td><td>16-420mm</td><td>T4.2</td><td><span class="year-badge">2022</span></td><td>4.5kg</td><td><span class="sensor-tag">Full Frame</span></td><td>超长焦，12 倍变焦，全画幅</td></tr>
+                    <tr><td class="model-name">Optimo 4:1 11-160</td><td><span class="mount-tag">PL</span></td><td>11-160mm</td><td>T2.6</td><td><span class="year-badge">2018</span></td><td>2.8kg</td><td><span class="sensor-tag">Super35</span></td><td>4 倍变焦，轻便</td></tr>
+                    <tr><td class="model-name">Optimo 4:1 15-40</td><td><span class="mount-tag">PL</span></td><td>15-40mm</td><td>T2.0</td><td><span class="year-badge">2017</span></td><td>2.2kg</td><td><span class="sensor-tag">Super35</span></td><td>广角变焦</td></tr>
+                    <tr><td class="model-name">Optimo 4:1 28-76</td><td><span class="mount-tag">PL</span></td><td>28-76mm</td><td>T2.6</td><td><span class="year-badge">2017</span></td><td>2.3kg</td><td><span class="sensor-tag">Super35</span></td><td>标准变焦</td></tr>
+                    <tr><td class="model-name">Optimo 10:1 30-300</td><td><span class="mount-tag">PL</span></td><td>30-300mm</td><td>T2.6</td><td><span class="year-badge">2015</span></td><td>3.5kg</td><td><span class="sensor-tag">Super35</span></td><td>10 倍变焦</td></tr>
+                    <tr><td class="model-name">Optimo 12:1 24-290</td><td><span class="mount-tag">PL</span></td><td>24-290mm</td><td>T2.8</td><td><span class="year-badge">2014</span></td><td>3.8kg</td><td><span class="sensor-tag">Super35</span></td><td>12 倍变焦，经典款</td></tr>
+                    <tr><td class="model-name">Optimo DW2 28-340</td><td><span class="mount-tag">PL</span></td><td>28-340mm</td><td>T3.5</td><td><span class="year-badge">2019</span></td><td>4.2kg</td><td><span class="sensor-tag">Super35</span></td><td>12 倍变焦，高倍率</td></tr>
+                    <tr><td class="model-name">Optimo DW3 17-80</td><td><span class="mount-tag">PL</span></td><td>17-80mm</td><td>T2.4</td><td><span class="year-badge">2018</span></td><td>2.5kg</td><td><span class="sensor-tag">Super35</span></td><td>紧凑长焦</td></tr>
+                    <tr><td class="model-name">Optimo DW4 11-160</td><td><span class="mount-tag">PL</span></td><td>11-160mm</td><td>T2.6</td><td><span class="year-badge">2020</span></td><td>2.9kg</td><td><span class="sensor-tag">Super35</span></td><td>多功能变焦</td></tr>
+                    <tr><td class="model-name">Optimo 36-435</td><td><span class="mount-tag">PL</span></td><td>36-435mm</td><td>T3.5</td><td><span class="year-badge">2005</span></td><td>3.8kg</td><td><span class="sensor-tag">Super35</span></td><td>12 倍变焦，长焦经典，纪录片首选</td></tr>
+                    <tr><td class="model-name">Optimo 19.5-120</td><td><span class="mount-tag">PL</span></td><td>19.5-120mm</td><td>T2.6</td><td><span class="year-badge">2017</span></td><td>2.6kg</td><td><span class="sensor-tag">Super35</span></td><td>标准变焦，轻便</td></tr>
+                    <tr><td class="model-name">Optimo 24-64</td><td><span class="mount-tag">PL</span></td><td>24-64mm</td><td>T2.8</td><td><span class="year-badge">2016</span></td><td>2.1kg</td><td><span class="sensor-tag">Super35</span></td><td>紧凑标准变焦</td></tr>
+                    <tr><td class="model-name">Optimo 11-22</td><td><span class="mount-tag">PL</span></td><td>11-22mm</td><td>T2.8</td><td><span class="year-badge">2018</span></td><td>2.3kg</td><td><span class="sensor-tag">Super35</span></td><td>超广角变焦</td></tr>
+                    <tr><td class="model-name">Optimo 18-85</td><td><span class="mount-tag">PL</span></td><td>18-85mm</td><td>T2.6</td><td><span class="year-badge">2017</span></td><td>2.5kg</td><td><span class="sensor-tag">Super35</span></td><td>广角到中长焦</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="series-section">
+            <h2 class="series-title">🎥 Type 系列 (经典电影变焦)</h2>
+            <p class="series-count">共 7 款 | 1958-2016 | Super35/35mm 胶片</p>
+            <table>
+                <thead>
+                    <tr><th>型号</th><th>卡口</th><th>焦距</th><th>光圈</th><th>年份</th><th>重量</th><th>传感器</th><th>特点</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="model-name">Type M-1</td><td><span class="mount-tag">PL</span></td><td>15-40mm</td><td>T2.0</td><td><span class="year-badge">2015</span></td><td>1.2kg</td><td><span class="sensor-tag">Super35</span></td><td>广角，轻量化</td></tr>
+                    <tr><td class="model-name">Type M-2</td><td><span class="mount-tag">PL</span></td><td>45-120mm</td><td>T2.0</td><td><span class="year-badge">2015</span></td><td>1.3kg</td><td><span class="sensor-tag">Super35</span></td><td>中长焦，人像拍摄</td></tr>
+                    <tr><td class="model-name">Type M-3</td><td><span class="mount-tag">PL</span></td><td>25-250mm</td><td>T3.5</td><td><span class="year-badge">2016</span></td><td>2.8kg</td><td><span class="sensor-tag">Super35</span></td><td>超长变焦，纪录片首选</td></tr>
+                    <tr><td class="model-name">Type 2A</td><td><span class="mount-tag">PL</span></td><td>28-76mm</td><td>T2.8</td><td><span class="year-badge">1958</span></td><td>2.5kg</td><td><span class="sensor-tag">35mm Film</span></td><td>经典设计，历史款</td></tr>
+                    <tr><td class="model-name">Type 3A</td><td><span class="mount-tag">PL</span></td><td>17-80mm</td><td>T2.8</td><td><span class="year-badge">1965</span></td><td>2.8kg</td><td><span class="sensor-tag">35mm Film</span></td><td>经典广角</td></tr>
+                    <tr><td class="model-name">Type 10</td><td><span class="mount-tag">PL</span></td><td>25-250mm</td><td>T3.5</td><td><span class="year-badge">1972</span></td><td>3.5kg</td><td><span class="sensor-tag">35mm Film</span></td><td>10 倍变焦，突破设计</td></tr>
+                    <tr><td class="model-name">Type 15</td><td><span class="mount-tag">PL</span></td><td>10-150mm</td><td>T3.0</td><td><span class="year-badge">1980</span></td><td>3.2kg</td><td><span class="sensor-tag">35mm Film</span></td><td>大变焦比</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="series-section">
+            <h2 class="series-title">🎥 Prime 系列 (定焦镜头)</h2>
+            <p class="series-count">共 5 款 | 2019 | 全画幅</p>
+            <table>
+                <thead>
+                    <tr><th>型号</th><th>卡口</th><th>焦距</th><th>光圈</th><th>年份</th><th>重量</th><th>传感器</th><th>特点</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="model-name">28mm Prime</td><td><span class="mount-tag">PL</span></td><td>28mm</td><td>T1.5</td><td><span class="year-badge">2019</span></td><td>0.8kg</td><td><span class="sensor-tag">Full Frame</span></td><td>大光圈广角定焦</td></tr>
+                    <tr><td class="model-name">35mm Prime</td><td><span class="mount-tag">PL</span></td><td>35mm</td><td>T1.5</td><td><span class="year-badge">2019</span></td><td>0.8kg</td><td><span class="sensor-tag">Full Frame</span></td><td>大光圈标准定焦</td></tr>
+                    <tr><td class="model-name">50mm Prime</td><td><span class="mount-tag">PL</span></td><td>50mm</td><td>T1.5</td><td><span class="year-badge">2019</span></td><td>0.8kg</td><td><span class="sensor-tag">Full Frame</span></td><td>标准定焦</td></tr>
+                    <tr><td class="model-name">75mm Prime</td><td><span class="mount-tag">PL</span></td><td>75mm</td><td>T1.5</td><td><span class="year-badge">2019</span></td><td>0.9kg</td><td><span class="sensor-tag">Full Frame</span></td><td>中长焦定焦</td></tr>
+                    <tr><td class="model-name">100mm Prime</td><td><span class="mount-tag">PL</span></td><td>100mm</td><td>T1.5</td><td><span class="year-badge">2019</span></td><td>0.9kg</td><td><span class="sensor-tag">Full Frame</span></td><td>长焦定焦</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="series-section">
+            <h2 class="series-title">📼 广播系列 (Broadcast)</h2>
+            <p class="series-count">共 14 款 | 2019-2022 | 2/3" 传感器</p>
+            <table>
+                <thead>
+                    <tr><th>型号</th><th>卡口</th><th>焦距</th><th>光圈</th><th>年份</th><th>重量</th><th>倍率</th><th>特点</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="model-name">45x 演播室</td><td><span class="mount-tag">B4</span></td><td>4.5-203mm</td><td>T1.8</td><td><span class="year-badge">2020</span></td><td>5.5kg</td><td><span class="type-tag">45x</span></td><td>演播室专用</td></tr>
+                    <tr><td class="model-name">60x 演播室</td><td><span class="mount-tag">B4</span></td><td>4.9-294mm</td><td>T2.0</td><td><span class="year-badge">2020</span></td><td>6.2kg</td><td><span class="type-tag">60x</span></td><td>演播室高倍率</td></tr>
+                    <tr><td class="model-name">75x 演播室</td><td><span class="mount-tag">B4</span></td><td>5.6-420mm</td><td>T2.2</td><td><span class="year-badge">2021</span></td><td>7.5kg</td><td><span class="type-tag">75x</span></td><td>超长焦演播室</td></tr>
+                    <tr><td class="model-name">80x 演播室</td><td><span class="mount-tag">B4</span></td><td>6.0-480mm</td><td>T2.4</td><td><span class="year-badge">2021</span></td><td>8.0kg</td><td><span class="type-tag">80x</span></td><td>旗舰演播室</td></tr>
+                    <tr><td class="model-name">100x 演播室</td><td><span class="mount-tag">B4</span></td><td>7.5-750mm</td><td>T2.8</td><td><span class="year-badge">2022</span></td><td>9.5kg</td><td><span class="type-tag">100x</span></td><td>100 倍变焦，超长焦</td></tr>
+                    <tr><td class="model-name">14x 便携式</td><td><span class="mount-tag">B4</span></td><td>4.2-59mm</td><td>T1.6</td><td><span class="year-badge">2019</span></td><td>2.8kg</td><td><span class="type-tag">14x</span></td><td>便携式，轻便</td></tr>
+                    <tr><td class="model-name">17x 便携式</td><td><span class="mount-tag">B4</span></td><td>5.5-94mm</td><td>T1.7</td><td><span class="year-badge">2019</span></td><td>3.2kg</td><td><span class="type-tag">17x</span></td><td>便携式标准</td></tr>
+                    <tr><td class="model-name">22x 便携式</td><td><span class="mount-tag">B4</span></td><td>5.0-110mm</td><td>T1.8</td><td><span class="year-badge">2020</span></td><td>3.5kg</td><td><span class="type-tag">22x</span></td><td>便携式多功能</td></tr>
+                    <tr><td class="model-name">26x 便携式</td><td><span class="mount-tag">B4</span></td><td>6.3-164mm</td><td>T1.9</td><td><span class="year-badge">2020</span></td><td>3.8kg</td><td><span class="type-tag">26x</span></td><td>便携式长焦</td></tr>
+                    <tr><td class="model-name">31x 便携式</td><td><span class="mount-tag">B4</span></td><td>4.8-149mm</td><td>T1.7</td><td><span class="year-badge">2021</span></td><td>3.6kg</td><td><span class="type-tag">31x</span></td><td>高倍率便携</td></tr>
+                    <tr><td class="model-name">35x 便携式</td><td><span class="mount-tag">B4</span></td><td>5.3-186mm</td><td>T1.9</td><td><span class="year-badge">2021</span></td><td>4.0kg</td><td><span class="type-tag">35x</span></td><td>高倍率</td></tr>
+                    <tr><td class="model-name">45x 便携式</td><td><span class="mount-tag">B4</span></td><td>3.8-171mm</td><td>T1.8</td><td><span class="year-badge">2022</span></td><td>4.2kg</td><td><span class="type-tag">45x</span></td><td>超高倍率便携</td></tr>
+                    <tr><td class="model-name">65x 便携式</td><td><span class="mount-tag">B4</span></td><td>7.0-455mm</td><td>T2.1</td><td><span class="year-badge">2022</span></td><td>5.5kg</td><td><span class="type-tag">65x</span></td><td>超长焦便携</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="series-section">
+            <h2 class="series-title">🏛️ 经典系列 (历史收藏)</h2>
+            <p class="series-count">共 5 款 | 1970-1982 | 35mm 胶片</p>
+            <table>
+                <thead>
+                    <tr><th>型号</th><th>卡口</th><th>焦距</th><th>光圈</th><th>年份</th><th>重量</th><th>传感器</th><th>特点</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="model-name">25-250mm HR</td><td><span class="mount-tag">PL</span></td><td>25-250mm</td><td>T3.5</td><td><span class="year-badge">1975</span></td><td>3.2kg</td><td><span class="sensor-tag">35mm Film</span></td><td>高解析度，收藏级</td></tr>
+                    <tr><td class="model-name">10-150mm</td><td><span class="mount-tag">PL</span></td><td>10-150mm</td><td>T3.0</td><td><span class="year-badge">1980</span></td><td>2.5kg</td><td><span class="sensor-tag">35mm Film</span></td><td>大变焦比，经典款</td></tr>
+                    <tr><td class="model-name">15-120mm</td><td><span class="mount-tag">PL</span></td><td>15-120mm</td><td>T2.8</td><td><span class="year-badge">1970</span></td><td>2.8kg</td><td><span class="sensor-tag">35mm Film</span></td><td>经典变焦</td></tr>
+                    <tr><td class="model-name">20-120mm</td><td><span class="mount-tag">PL</span></td><td>20-120mm</td><td>T2.8</td><td><span class="year-badge">1975</span></td><td>2.6kg</td><td><span class="sensor-tag">35mm Film</span></td><td>标准变焦</td></tr>
+                    <tr><td class="model-name">50-280mm</td><td><span class="mount-tag">PL</span></td><td>50-280mm</td><td>T3.5</td><td><span class="year-badge">1982</span></td><td>3.0kg</td><td><span class="sensor-tag">35mm Film</span></td><td>长焦变焦</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            <p><strong>整理时间</strong> 2026-03-10 23:54</p>
+            <p><strong>数据来源</strong> Angenieux 官网 · 维基百科 · B&H Photo · 行业资料</p>
+            <p><strong>总计</strong> 6 大系列 · 46 款镜头 · 1935-2026</p>
+            <p style="margin-top: 15px; color: #999; font-size: 0.9em;">
+                备注：规格参数可能因地区和销售时间有所不同，请以官方最新数据为准<br>
+                部分历史镜头已停产，仅供参考和收藏
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
