@@ -119,8 +119,12 @@ Publish content timed out after 60000ms
 
 **Logged**: 2026-03-12T09:00:03+08:00
 **Priority**: high
-**Status**: pending
+**Status**: resolved
 **Area**: infra
+
+### Resolution
+- **Resolved**: 2026-03-12T09:00:15+08:00
+- **Notes**: 重试机制生效，后续推送（DPReview、PetaPixel 等）均成功
 
 ### Summary
 飞书推送触达 API 速率限制（错误 9499: too many request）

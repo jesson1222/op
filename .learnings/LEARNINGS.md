@@ -391,8 +391,12 @@ launchctl list | grep no-sleep
 
 **Logged**: 2026-03-12T10:10:00+08:00
 **Priority**: high
-**Status**: pending
+**Status**: resolved
 **Area**: infra
+
+### Resolution
+- **Resolved**: 2026-03-12T13:42:00+08:00
+- **Notes**: 重试机制已验证有效，后续推送全部成功
 
 ### Summary
 飞书 API 速率限制（错误 9499）需要重试机制和请求间隔
