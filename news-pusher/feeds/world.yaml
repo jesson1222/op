@@ -1,0 +1,33 @@
+# 国际局势 RSS 源
+
+- name: Reuters World News
+  url: https://www.reutersagency.com/feed/
+  category: World
+  language: en
+
+- name: BBC World News
+  url: https://feeds.bbci.co.uk/news/world/rss.xml
+  category: World
+  language: en
+
+- name: Al Jazeera
+  url: https://www.aljazeera.com/xml/rss/all.xml
+  category: World
+  language: en
+
+- name: CNN World
+  url: http://rss.cnn.com/rss/world.rss
+  category: World
+  language: en
+
+# 中东局势专项
+- name: Reuters Middle East
+  url: https://www.reutersagency.com/feed/?best-post-type=news&post_types=news&categories=middle-east
+  category: MiddleEast
+  language: en
+
+# 伊朗相关
+- name: Iran News (Tehran Times)
+  url: https://www.tehrantimes.com/rss
+  category: Iran
+  language: en

@@ -43,6 +43,13 @@ feeds:
     enabled: true
     title: "📷 摄影"
     emoji: "📷"
+  
+  # 国际局势类
+  world:
+    path: feeds/world.yaml
+    enabled: true
+    title: "🌍 国际局势"
+    emoji: "🌍"
 
 # ============ 内容过滤配置 ============
 

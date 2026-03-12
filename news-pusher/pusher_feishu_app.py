@@ -157,29 +157,29 @@ class FeishuAPI:
 
 
 class Translator:
-    """翻译器 - 使用 Ollama 本地 AI 模型翻译"""
+    """翻译器 - 使用阿里云百炼模型翻译"""
     
     def __init__(self, app_id: str = None, app_key: str = None):
         self.cache = {}  # 翻译缓存
-        # Ollama API 端点
-        self.ollama_url = "http://localhost:11434/api/generate"
-        self.model = "qwen3:4b"  # 使用轻量 qwen 模型（更快）
-        self.use_ollama = True
+        # 百炼 API 配置
+        self.api_url = "https://coding.dashscope.aliyuncs.com/v1/chat/completions"
+        self.api_key = "sk-sp-9f96977287be4cf8ba33b60b77121481"  # 百炼 API Key
+        self.model = "qwen3.5-plus"  # 使用 qwen3.5-plus 模型
+        self.use_bailian = bool(self.api_key)
         
-        # 测试 Ollama 是否可用
-        try:
-            test_resp = requests.get("http://localhost:11434/api/tags", timeout=10)
-            if test_resp.status_code == 200:
-                print(f"✅ Ollama 翻译已启用（模型：{self.model}）")
-            else:
-                print("⚠️ Ollama 响应异常，将跳过翻译")
-                self.use_ollama = False
-        except Exception as e:
-            print(f"⚠️ Ollama 连接失败 ({e})，将跳过翻译")
-            self.use_ollama = False
+        # 配置代理（访问百炼需要）
+        self.proxies = {
+            "http": "http://127.0.0.1:9674",
+            "https": "http://127.0.0.1:9674"
+        }
+        
+        if self.use_bailian:
+            print(f"✅ 百炼翻译已启用（模型：{self.model}）")
+        else:
+            print("⚠️ 未配置百炼 API Key，将跳过翻译")
     
     def translate(self, text: str, source: str = "en", target: str = "zh") -> str:
-        """使用 Ollama 本地模型翻译文本"""
+        """使用阿里云百炼模型翻译文本"""
         if not text or len(text.strip()) < 2:
             return text
         
@@ -192,29 +192,40 @@ class Translator:
         if self._is_chinese(text):
             return text
         
-        # Ollama 不可用，返回原文
-        if not self.use_ollama:
+        # 百炼不可用，返回原文
+        if not self.use_bailian:
             return text
         
         try:
-            # 构建翻译提示
-            prompt = f"Translate the following English text to Chinese (only output the translation, no explanations):\n\n{text[:500]}"
+            # 构建翻译提示（使用 chat 格式）
+            messages = [
+                {
+                    "role": "system",
+                    "content": "You are a professional translator. Translate English to Chinese. Only output the translation, no explanations."
+                },
+                {
+                    "role": "user",
+                    "content": f"Translate this to Chinese:\n\n{text[:2000]}"
+                }
+            ]
             
             payload = {
                 "model": self.model,
-                "prompt": prompt,
-                "stream": False,
-                "options": {
-                    "temperature": 0.3,
-                    "num_predict": 256
-                }
+                "messages": messages,
+                "temperature": 0.3,
+                "max_tokens": 512
             }
             
-            response = requests.post(self.ollama_url, json=payload, timeout=120)
+            headers = {
+                "Authorization": f"Bearer {self.api_key}",
+                "Content-Type": "application/json"
+            }
+            
+            response = requests.post(self.api_url, json=payload, headers=headers, proxies=self.proxies, timeout=60)
             
             if response.status_code == 200:
                 result = response.json()
-                translated = result.get('response', '').strip()
+                translated = result.get('choices', [{}])[0].get('message', {}).get('content', '').strip()
                 
                 if translated:
                     self.cache[cache_key] = translated
