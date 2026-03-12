@@ -114,3 +114,39 @@ Publish content timed out after 60000ms
 - Pattern-Key: xiaohongshu.cookie-refresh
 
 ---
+
+## [ERR-20260312-001] feishu-rate-limit
+
+**Logged**: 2026-03-12T09:00:03+08:00
+**Priority**: high
+**Status**: pending
+**Area**: infra
+
+### Summary
+飞书推送触达 API 速率限制（错误 9499: too many request）
+
+### Error
+```
+❌ 发送失败：{'code': 9499, 'msg': 'too many request', 'error': {'log_id': '20260312090003DB1AC07769A0511EC22E'}}
+```
+
+### Context
+- 操作：早间新闻推送（09:00 定时任务）
+- 推送渠道：飞书卡片消息
+- 新闻数量：2 条（MIT Technology Review）
+- 日志位置：news-pusher/logs/pusher.log
+- 首次出现：2026-03-12（之前推送正常）
+
+### Suggested Fix
+1. **添加重试机制**：遇到 9499 错误时，等待 60 秒后重试
+2. **添加请求间隔**：多条新闻之间增加 2-5 秒延迟
+3. **检查应用配额**：确认飞书应用 API 调用配额
+4. **监控频率**：如果频繁出现，考虑减少推送频率或合并消息
+
+### Metadata
+- Reproducible: unknown
+- Related Files: news-pusher/pusher_feishu_app.py, news-pusher/config.yaml
+- See Also: LRN-20260310-002 (小红书发布流程)
+- Pattern-Key: feishu.rate-limit-handling
+
+---

@@ -95,8 +95,8 @@ class FeishuAPI:
             print(f"❌ 发送失败：{result}")
             return False
     
-    def send_interactive_card(self, chat_id: str, card_config: Dict) -> bool:
-        """发送交互式卡片消息"""
+    def send_interactive_card(self, chat_id: str, card_config: Dict, max_retries: int = 3) -> bool:
+        """发送交互式卡片消息（带重试机制）"""
         token = self.get_tenant_token()
         
         url = f"{self.base_url}/im/v1/messages"
@@ -113,15 +113,30 @@ class FeishuAPI:
         
         params = {"receive_id_type": "chat_id"}
         
-        response = _requests_session.post(url, headers=headers, json=payload, params=params, timeout=10)
-        result = response.json()
+        # 重试逻辑：处理速率限制等临时错误
+        for attempt in range(1, max_retries + 1):
+            response = _requests_session.post(url, headers=headers, json=payload, params=params, timeout=10)
+            result = response.json()
+            
+            if result.get('code') == 0:
+                print("✅ 卡片消息发送成功！")
+                return True
+            else:
+                code = result.get('code')
+                msg = result.get('msg', '')
+                
+                # 9499 = too many request，需要重试
+                if code == 9499 and attempt < max_retries:
+                    wait_time = attempt * 30  # 指数退避：30s, 60s, 90s
+                    print(f"⚠️  速率限制（{code}: {msg}），{wait_time}秒后重试 ({attempt}/{max_retries})...")
+                    import time
+                    time.sleep(wait_time)
+                    continue
+                else:
+                    print(f"❌ 发送失败：{result}")
+                    return False
         
-        if result.get('code') == 0:
-            print("✅ 卡片消息发送成功！")
-            return True
-        else:
-            print(f"❌ 发送失败：{result}")
-            return False
+        return False
     
     def get_chat_info(self, chat_id: str) -> Dict:
         """获取群组信息"""
@@ -142,21 +157,29 @@ class FeishuAPI:
 
 
 class Translator:
-    """翻译器 - 使用百度翻译 API（国内可访问）"""
+    """翻译器 - 使用 Ollama 本地 AI 模型翻译"""
     
     def __init__(self, app_id: str = None, app_key: str = None):
         self.cache = {}  # 翻译缓存
-        # 百度翻译 API v1（免费额度：QPS=1，每月 200 万字符）
-        self.api_url = "https://fanyi-api.baidu.com/api/trans/vip/translate"
-        self.app_id = app_id
-        self.app_key = app_key
-        self.use_baidu = bool(app_id and app_key)
+        # Ollama API 端点
+        self.ollama_url = "http://localhost:11434/api/generate"
+        self.model = "qwen3:4b"  # 使用轻量 qwen 模型（更快）
+        self.use_ollama = True
         
-        if not self.use_baidu:
-            print("⚠️ 未配置百度翻译 API，将跳过翻译")
+        # 测试 Ollama 是否可用
+        try:
+            test_resp = requests.get("http://localhost:11434/api/tags", timeout=10)
+            if test_resp.status_code == 200:
+                print(f"✅ Ollama 翻译已启用（模型：{self.model}）")
+            else:
+                print("⚠️ Ollama 响应异常，将跳过翻译")
+                self.use_ollama = False
+        except Exception as e:
+            print(f"⚠️ Ollama 连接失败 ({e})，将跳过翻译")
+            self.use_ollama = False
     
     def translate(self, text: str, source: str = "en", target: str = "zh") -> str:
-        """翻译文本"""
+        """使用 Ollama 本地模型翻译文本"""
         if not text or len(text.strip()) < 2:
             return text
         
@@ -169,56 +192,37 @@ class Translator:
         if self._is_chinese(text):
             return text
         
-        # 未配置百度翻译，返回原文
-        if not self.use_baidu:
+        # Ollama 不可用，返回原文
+        if not self.use_ollama:
             return text
         
-        import hashlib
-        import random
-        
         try:
-            # 百度翻译 API v1
-            salt = random.randint(32768, 65536)
-            sign = hashlib.md5(f"{self.app_id}{text}{salt}{self.app_key}".encode('utf-8')).hexdigest()
+            # 构建翻译提示
+            prompt = f"Translate the following English text to Chinese (only output the translation, no explanations):\n\n{text[:500]}"
             
-            params = {
-                "q": text[:2000],  # 百度支持更长文本
-                "from": source,
-                "to": target,
-                "appid": self.app_id,
-                "salt": str(salt),
-                "sign": sign
+            payload = {
+                "model": self.model,
+                "prompt": prompt,
+                "stream": False,
+                "options": {
+                    "temperature": 0.3,
+                    "num_predict": 256
+                }
             }
             
-            response = _requests_session.post(self.api_url, data=params, timeout=10)
+            response = requests.post(self.ollama_url, json=payload, timeout=120)
             
             if response.status_code == 200:
                 result = response.json()
+                translated = result.get('response', '').strip()
                 
-                # 检查错误码
-                if 'error_code' in result:
-                    error_code = result.get('error_code', '')
-                    error_msg = result.get('error_msg', '')
-                    print(f"    ⚠️ 百度翻译错误 {error_code}: {error_msg}")
-                    # 52003 = 未授权，需要实名认证或开通服务
-                    if error_code == '52003':
-                        print(f"    💡 请在百度翻译控制台完成实名认证并开通【通用翻译 API】服务")
-                    return text
-                
-                # 提取翻译结果
-                if 'trans_result' in result:
-                    translated_parts = [item['dst'] for item in result['trans_result'] if 'dst' in item]
-                    translated = ''.join(translated_parts)
-                    
-                    if translated:
-                        self.cache[cache_key] = translated
-                        return translated
-                    else:
-                        print(f"    ⚠️ 翻译 API 无结果：{text[:50]}...")
+                if translated:
+                    self.cache[cache_key] = translated
+                    return translated
                 else:
-                    print(f"    ⚠️ 翻译 API 响应格式异常：{result}")
+                    print(f"    ⚠️ 翻译无结果：{text[:50]}...")
             else:
-                print(f"    ⚠️ 翻译 API 失败 (status={response.status_code}): {text[:50]}...")
+                print(f"    ⚠️ 翻译失败 (status={response.status_code}): {text[:50]}...")
             
             return text
             

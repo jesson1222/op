@@ -387,4 +387,45 @@ launchctl list | grep no-sleep
 
 ---
 
+## [LRN-20260312-001] feishu-rate-limit-handling
+
+**Logged**: 2026-03-12T10:10:00+08:00
+**Priority**: high
+**Status**: pending
+**Area**: infra
+
+### Summary
+飞书 API 速率限制（错误 9499）需要重试机制和请求间隔
+
+### Details
+2026-03-12 09:00 早间新闻推送时遇到飞书 API 速率限制：
+- 错误码：9499 (too many request)
+- 场景：推送 2 条 MIT Technology Review 新闻到飞书群组
+- 之前推送（昨晚 18:00）正常
+- 可能是 API 配额限制或临时 throttling
+
+### Key Learnings
+1. 飞书开放平台 API 有速率限制（具体配额需查文档）
+2. 错误 9499 是临时性错误，可以通过重试解决
+3. 需要实现指数退避重试（30s, 60s, 90s）
+4. 建议添加请求间延迟避免触发限制
+
+### Suggested Action
+✅ 已完成：
+1. 在 `pusher_feishu_app.py` 的 `send_interactive_card` 方法添加重试逻辑
+2. 配置最大重试 3 次，指数退避（30s × 尝试次数）
+3. 记录错误到 `.learnings/ERRORS.md`
+
+待完成：
+1. 监控后续推送是否还有此问题
+2. 如频繁出现，考虑降低推送频率或合并消息
+3. 查看飞书开放平台文档确认 API 配额
+
+### Metadata
+- Source: error
+- Related Files: news-pusher/pusher_feishu_app.py, news-pusher/logs/pusher.log
+- Tags: feishu, rate-limit, api, retry
+- Pattern-Key: feishu.rate-limit-handling
+- See Also: ERR-20260312-001
+
 ---
