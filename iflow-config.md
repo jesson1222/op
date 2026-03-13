@@ -4,6 +4,21 @@
 
 iFlow 已成功集成到 OpenClaw，可以免费使用多个顶级模型！
 
+**技能系统**: ✅ 已创建 `skills/iflow/SKILL.md`
+
+---
+
+## 📦 安装验证
+
+```bash
+# 验证 CLI 安装
+iflow --version
+# 输出：0.5.17
+
+# 测试调用
+~/.openclaw/workspace/scripts/iflow.sh -p "你好"
+```
+
 ---
 
 ## 📋 可用模型列表

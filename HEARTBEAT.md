@@ -41,3 +41,23 @@ grep -h "Status\*\*: pending" ~/.openclaw/workspace/.learnings/*.md | wc -l
 # 查看高优先级的 errors
 grep -B5 "Priority\*\*: high" ~/.openclaw/workspace/.learnings/ERRORS.md
 ```
+
+---
+
+## 🔑 iFlow 认证状态
+
+**认证方式**: OAuth (通过 iFlow 登录)
+
+**优势**: 
+- ✅ Token 自动续期，无需手动管理
+- ✅ 享受完整功能（WebSearch、WebFetch、多模态）
+- ✅ 无需担心 API Key 过期
+
+**检查项**:
+- [ ] iFlow CLI 是否正常工作
+- [ ] 测试命令：`iflow -p "test"`
+
+**重新认证方法**（如需要）:
+1. 运行 `iflow` 进入交互模式
+2. 选择 "Login with iFlow"
+3. 浏览器自动打开并完成登录
